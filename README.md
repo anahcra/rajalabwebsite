@@ -5,11 +5,14 @@ Static multi-page site for Raja Labs (Nanoscale Spectroscopy, Molecular Foundry,
 ```
 index.html          home: hero, intro, news, key publications
 research.html       research areas
+facilities.html     stacker + optics labs, Foundry user-proposal access
 about.html          PI bio
 publications.html   paper-boat header + all publications
 team.html           group members and alumni
+lab-life.html       what working in the lab is like
 talks.html          invited talks
 visit.html          getting to the Molecular Foundry
+faq.html            joining, user access, visiting (<details> accordions)
 join.html           openings / contact
 css/styles.css      styles + responsive breakpoints
 js/main.js          nav behaviour (transparent → solid on scroll, mobile menu)
