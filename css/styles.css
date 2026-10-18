@@ -542,7 +542,7 @@ html:not(.js) .ticker { display: none; }
 }
 .member { flex: 0 0 200px; text-align: center; }
 .member__photo {
-  width: 120px; height: 120px;
+  width: 150px; height: 150px;
   margin: 0 auto 18px;
   background: repeating-linear-gradient(45deg, #e4dfd3 0 8px, #ece8de 8px 16px);
   font-size: 10px;
