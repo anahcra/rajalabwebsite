@@ -511,6 +511,7 @@ html:not(.js) .ticker { display: none; }
   color: var(--gold-dark);
 }
 .pub b { font-weight: 600; color: var(--ink); }
+.pub__note { font-weight: 600; color: var(--gold-dark); white-space: nowrap; }
 
 /* ---------- Team ---------- */
 
