@@ -281,6 +281,8 @@ img { display: block; max-width: 100%; }
   color: rgba(255, 255, 255, .88);
 }
 .page-head .btn { margin-top: 32px; }
+/* Content sits closer to the page header than to other sections. */
+.page-head + section:not(.publications) { padding-top: 56px; }
 
 /* Faded Molecular Foundry photo behind the Visit page title. */
 .page-head--visit::before {
