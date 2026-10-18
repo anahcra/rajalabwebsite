@@ -64,7 +64,7 @@
         <rect x="-100" y="-100" width="1700" height="800" fill="url(#tk-fade-g)"/>
       </mask>
       <radialGradient id="tk-glow">
-        <stop offset="0" stop-color="#FFE7B0" stop-opacity=".9"/><stop offset="1" stop-color="#FFE7B0" stop-opacity="0"/>
+        <stop offset="0" stop-color="${PAPER}" stop-opacity=".9"/><stop offset="1" stop-color="${PAPER}" stop-opacity="0"/>
       </radialGradient>
       <filter id="tk-lift" x="-10%" y="-30%" width="120%" height="170%">
         <feDropShadow dx="0" dy="3" stdDeviation="2.4" flood-color="#08203a" flood-opacity=".35"/>
@@ -121,13 +121,13 @@
     return `M ${x},${-y} A ${r},${r} 0 0 1 ${x},${y}`;
   }
   svg.querySelector('.ticker__source').innerHTML =
-    `<polygon points="${hexPts(11)}" fill="#E3A72F" stroke="#FFF6E2" stroke-width="2"/>
-     <polygon points="${hexPts(4)}" fill="#FFF6E2"/>`;
+    `<polygon points="${hexPts(11)}" fill="${RED}" stroke="${PAPER}" stroke-width="2"/>
+     <polygon points="${hexPts(4)}" fill="${PAPER}"/>`;
   const glow = svg.querySelector('.ticker__glow');
   const arcsG = svg.querySelector('.ticker__arcs');
   const ARC_N = 6, ARC_PERIOD = 4.2, R0 = 16, R1 = 128;
   const arcs = Array.from({ length: ARC_N }, (_, i) =>
-    el('path', { fill: 'none', 'stroke-linecap': 'round', stroke: i % 3 === 1 ? '#F2B640' : '#FFFFFF' }, arcsG));
+    el('path', { fill: 'none', 'stroke-linecap': 'round', stroke: i % 2 ? RED : PAPER }, arcsG));
   function drawArcs(t) {
     arcs.forEach((p, i) => {
       const ph = ((t / ARC_PERIOD) + i / ARC_N) % 1; // 0 at the source, 1 at the edge
