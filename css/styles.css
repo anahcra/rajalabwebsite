@@ -282,6 +282,15 @@ img { display: block; max-width: 100%; }
 }
 .page-head .btn { margin-top: 32px; }
 
+/* Faded Molecular Foundry photo behind the Visit page title. */
+.page-head--visit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url(../assets/molecular-foundry.jpg) center 35% / cover no-repeat;
+  opacity: .3;
+}
+
 /* ---------- Intro ---------- */
 
 .intro { padding: 120px 24px; display: flex; justify-content: center; }
@@ -567,18 +576,7 @@ html:not(.js) .ticker { display: none; }
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-.visit__where {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 28px 32px;
-  margin-bottom: 24px;
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  border-radius: 6px;
-}
-.visit__address { flex: 1; min-width: 0; }
-.visit__place {
+.visit__title {
   margin: 0 0 4px;
   font-family: var(--display);
   font-weight: 800;
@@ -586,7 +584,16 @@ html:not(.js) .ticker { display: none; }
   letter-spacing: .04em;
   text-transform: uppercase;
 }
-.visit__org { margin: 0; font-size: 14px; line-height: 1.6; color: var(--muted); }
+.visit-intro {
+  margin-bottom: 24px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+}
+.visit-intro__body { padding: 28px 32px 32px; }
+.visit-intro__where { margin: 0 0 16px; font-size: 14px; line-height: 1.6; color: var(--muted); }
+.visit-intro__text { margin: 0; font-size: 15px; line-height: 1.75; max-width: 820px; }
+.visit-intro__text strong { font-weight: 600; }
 .visit__grid {
   list-style: none;
   margin: 0;
@@ -633,6 +640,18 @@ html:not(.js) .ticker { display: none; }
 .visit-card__link::after { content: ''; position: absolute; inset: 0; border-radius: 6px; }
 .visit-card__link:focus-visible { outline: none; }
 .visit-card:has(.visit-card__link:focus-visible) { outline: 2px solid var(--blue); outline-offset: 3px; }
+
+.visit-map {
+  margin: 24px 0 0;
+  padding: 28px 32px 32px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+}
+.visit-map__caption { margin-bottom: 20px; }
+.visit-map__tagline { margin: 0; font-size: 14px; line-height: 1.6; color: var(--muted); }
+.visit-map__link { display: block; border-radius: 4px; }
+.visit-map__link img { display: block; width: 100%; height: auto; }
 
 .sr-only {
   position: absolute;
@@ -730,7 +749,8 @@ html:not(.js) .ticker { display: none; }
   .pi__inner { grid-template-columns: minmax(0, 1fr); gap: 40px; text-align: center; }
   .pi__photo { max-width: 240px; margin: 0 auto; }
   .pi__links { justify-content: center; }
-  .visit__where { flex-direction: column; text-align: center; }
+  .visit-map { padding: 20px 16px 16px; }
+  .visit-intro__body { padding: 20px 20px 24px; }
   .allpubs__group { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .allpubs__year { position: static; padding-top: 16px; border-bottom: 1px solid var(--rule); padding-bottom: 12px; }
 }

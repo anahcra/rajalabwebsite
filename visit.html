@@ -70,8 +70,7 @@
 
   <main>
     <!-- PAGE HEADER -->
-    <header class="page-head">
-      <div class="statement__pattern" aria-hidden="true"></div>
+    <header class="page-head page-head--visit">
       <div class="page-head__inner">
         <p class="eyebrow">Getting here</p>
         <h1 class="page-head__title">Visit Us</h1>
@@ -81,14 +80,13 @@
     <!-- VISIT -->
     <section class="visit">
       <div class="visit__inner">
-        <div class="visit__where">
-          <svg class="visit__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
-          <div class="visit__address">
-            <p class="visit__place">Molecular Foundry · Building 67</p>
-            <p class="visit__org">Lawrence Berkeley National Laboratory · 1 Cyclotron Road, Berkeley, CA</p>
+        <article class="visit-intro">
+          <div class="visit-intro__body">
+            <h2 class="visit__title">Visiting the Molecular Foundry</h2>
+            <p class="visit-intro__where">Lawrence Berkeley National Laboratory · 1 Cyclotron Road, Berkeley, CA</p>
+            <p class="visit-intro__text">The Foundry sits at Berkeley Lab in the hills above UC Berkeley. To get on site you’ll need an LBNL badge, or a visitor pass plus a <strong>REAL ID</strong>. We arrange passes for expected visitors, but they can take <strong>several weeks</strong>, so please reach out well before your visit. Parking is scarce and permit-only, so take the Lab shuttle and ask the driver to drop you at the Foundry. If you drive, pick up a one-day permit at the Blackberry Gate.</p>
           </div>
-          <a href="https://www2.lbl.gov/Workplace/lab-site-map.html" target="_blank" rel="noopener" class="btn btn--dark">Lab site map ↗<span class="sr-only"> (opens in a new tab)</span></a>
-        </div>
+        </article>
 
         <ul class="visit__grid">
           <li class="visit-card">
@@ -116,6 +114,17 @@
             <a href="https://foundry.lbl.gov/user-program/user-guide/prepare/" target="_blank" rel="noopener" class="visit-card__link">Foundry user guide ↗<span class="sr-only"> (opens in a new tab)</span></a>
           </li>
         </ul>
+
+        <figure class="visit-map">
+          <figcaption class="visit-map__caption">
+            <h2 class="visit__title">Molecular Foundry Optics Labs Locations</h2>
+            <p class="visit-map__tagline">Where you can find Raja Labs’ group members, collaborators and users.</p>
+          </figcaption>
+          <a href="assets/lbnl-optics-labs-map.pdf" target="_blank" rel="noopener" class="visit-map__link">
+            <img src="assets/lbnl-optics-labs-map.png" width="2000" height="1059" loading="lazy" alt="Berkeley Lab site map highlighting Raja Labs’ optics labs: Building 67, cryogenic time-resolved optical microscopy and spectroscopy; Building 66, quantum optics labs with fiber connections to ion traps at Quantnet; Building 62, cryogenic ultrafast magneto-optical microscopy and spectroscopy.">
+            <span class="sr-only"> (full-size PDF, opens in a new tab)</span>
+          </a>
+        </figure>
       </div>
     </section>
   </main>
