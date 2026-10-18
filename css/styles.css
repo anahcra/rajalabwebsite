@@ -461,22 +461,31 @@ img { display: block; max-width: 100%; }
 
 /* ---------- Publications ticker ---------- */
 
-.ticker {
-  height: clamp(340px, 42vw, 580px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.page-head.page-head--fleet { padding: var(--nav-h-solid) 0 0; }
+.fleet {
+  position: relative;
+  height: max(360px, 100vw * 540 / 1440); /* the photo's top 540px, never shorter than 360px */
   overflow: hidden;
-  background: var(--sand);
+  background: #5b86b5 url(../assets/golden-gate.jpg) 35% 0 / cover no-repeat;
 }
+/* Title and button sit in the open sky, above the bridge's main cable. */
+.fleet__head {
+  position: absolute;
+  top: 6%;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  text-align: center;
+  pointer-events: none;
+}
+.fleet__title { color: var(--blue); font-size: clamp(36px, 4.17vw, 64px); }
+.fleet__head .btn { margin-top: 16px; padding: 12px 22px; pointer-events: auto; }
+.ticker { position: absolute; inset: 0; }
 html:not(.js) .ticker { display: none; }
-.ticker svg { display: block; flex-shrink: 0; overflow: visible; }
-.ticker__questions { fill: #a8a294; font-family: var(--body); font-size: 22px; font-weight: 500; letter-spacing: .01em; }
-.ticker__ribbon { fill: none; stroke: var(--blue); stroke-width: 64; }
-.ticker__pill rect { fill: var(--gold); }
-.ticker__pill text { fill: var(--blue); font-family: var(--display); font-size: 16px; font-weight: 800; letter-spacing: .08em; }
-.ticker__box { fill: var(--paper); stroke: var(--blue); stroke-width: 4; }
-.ticker__r { fill: var(--blue); font-family: var(--display); font-size: 72px; font-weight: 800; }
+.ticker svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.ticker text { font-family: var(--body); }
+.ticker__questions { fill: #fff; font-size: 17px; font-weight: 600; }
+.ticker a { cursor: pointer; }
 
 /* ---------- All publications ---------- */
 
