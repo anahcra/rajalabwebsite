@@ -550,6 +550,8 @@ html:not(.js) .ticker { display: none; }
 }
 img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
 .member__name { margin: 0 0 4px; font-size: 14px; font-weight: 600; }
+.member__name a { color: inherit; }
+.member__name a:hover { color: var(--gold-dark); }
 .member__role {
   margin: 0;
   font-size: 11px;
@@ -557,6 +559,9 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
   text-transform: uppercase;
   color: var(--blue);
 }
+.team__network { margin: -32px 0 40px; font-size: 14px; color: var(--muted); text-align: center; }
+.linkedin-link { font-weight: 600; white-space: nowrap; }
+.linkedin-link__logo { width: 18px; height: 18px; margin-right: 6px; vertical-align: -3px; fill: #0A66C2; }
 .alumni {
   border-top: 1px solid #d8d2c4;
   padding-top: 40px;
