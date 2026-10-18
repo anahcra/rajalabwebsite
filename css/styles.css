@@ -293,6 +293,22 @@ img { display: block; max-width: 100%; }
   opacity: .3;
 }
 
+/* Faded group photo behind the Team page title, as tall as the Publications header. */
+.page-head.page-head--team {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(var(--nav-h-solid) + max(360px, 100vw * 540 / 1440));
+  padding: var(--nav-h-solid) 24px 0;
+}
+.page-head--team::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url(../assets/team.jpg) center 15% / cover no-repeat;
+  opacity: .35;
+}
+
 /* ---------- Intro ---------- */
 
 .intro { padding: 120px 24px; display: flex; justify-content: center; }
@@ -515,13 +531,16 @@ html:not(.js) .ticker { display: none; }
 .team__inner { max-width: 1080px; margin: 0 auto; }
 .team .eyebrow { text-align: center; }
 .section-title--team { margin-bottom: 64px; text-align: center; }
+/* Centered rows of at most four, so an odd count never strands one card. */
 .team__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 40px 24px;
-  margin-bottom: 72px;
+  max-width: 900px;
+  margin: 0 auto 72px;
 }
-.member { text-align: center; }
+.member { flex: 0 0 200px; text-align: center; }
 .member__photo {
   width: 120px; height: 120px;
   margin: 0 auto 18px;
@@ -529,6 +548,7 @@ html:not(.js) .ticker { display: none; }
   font-size: 10px;
   color: #8a8577;
 }
+img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
 .member__name { margin: 0 0 4px; font-size: 14px; font-weight: 600; }
 .member__role {
   margin: 0;
@@ -544,6 +564,7 @@ html:not(.js) .ticker { display: none; }
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 32px 48px;
 }
+.alumni--users { margin-top: 40px; }
 .alumni__title {
   margin: 0 0 12px;
   font-size: 11px;
@@ -771,6 +792,7 @@ html:not(.js) .ticker { display: none; }
   .hero__subtitle { letter-spacing: .24em; padding-left: .24em; }
   .hero__affil { letter-spacing: .2em; line-height: 1.8; }
   .talk { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .member { flex-basis: 150px; }
 }
 
 /* Without JavaScript: nav sits over the hero and scrolls away; links wrap instead of a menu button. */
