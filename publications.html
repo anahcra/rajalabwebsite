@@ -23,7 +23,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <script>document.documentElement.classList.add('js')</script>
   <script src="js/main.js" defer></script>
@@ -70,27 +70,25 @@
   </nav>
 
   <main>
-    <!-- PAGE HEADER -->
-    <header class="page-head">
-      <div class="page-head__inner">
-        <p class="eyebrow">63 papers · &gt; 4600 citations · h-index 27</p>
-        <h1 class="page-head__title">Publications</h1>
-        <p class="page-head__lede">Key papers first, then everything else by year. † corresponding author · * equal contribution.</p>
-        <a href="https://scholar.google.com/citations?user=sm4CJXAAAAAJ&amp;hl=en" target="_blank" rel="noopener" class="btn btn--light">Google Scholar ↗</a>
+    <!-- PAGE HEADER: questions from the papers run into the wavefront, papers sail out as paper boats (js/ticker.js) -->
+    <header class="page-head page-head--fleet">
+      <div class="fleet">
+        <div class="ticker" id="pub-ticker" aria-hidden="true"></div>
+        <div class="fleet__head">
+          <h1 class="page-head__title fleet__title">Publications</h1>
+          <a href="https://scholar.google.com/citations?user=sm4CJXAAAAAJ&amp;hl=en" target="_blank" rel="noopener" class="btn btn--solid">Google Scholar ↗</a>
+        </div>
       </div>
     </header>
 
     <!-- PUBLICATIONS -->
     <section class="publications">
-      <!-- Ticker: research questions loop into the R, papers ride out on the ribbon (js/ticker.js) -->
-      <div class="ticker" id="pub-ticker" aria-hidden="true"></div>
-
       <div class="allpubs" id="all-publications">
         <div class="list-head">
           <h2 class="list-head__title">All 63 Publications</h2>
           <a href="https://scholar.google.com/citations?user=sm4CJXAAAAAJ&amp;hl=en" target="_blank" rel="noopener" class="list-head__meta">Google Scholar ↗</a>
         </div>
-        <p class="pubs__legend">† corresponding · * equal contribution</p>
+        <p class="pubs__legend">&gt; 4600 citations · h-index 27 · key papers first, then by year · † corresponding · * equal contribution</p>
         <div class="allpubs__group">
           <h3 class="allpubs__year">Key</h3>
           <ol class="pubs">
