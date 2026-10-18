@@ -407,7 +407,7 @@ img { display: block; max-width: 100%; }
   display: grid;
   grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
   gap: 64px;
-  align-items: center;
+  align-items: start;
 }
 .pi__photo {
   width: 100%;
@@ -415,9 +415,17 @@ img { display: block; max-width: 100%; }
   object-fit: cover;
   border-radius: 6px;
 }
+.pi__contact {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 18px 0 0;
+  border-top: 1px solid var(--rule);
+  font-size: 14px;
+  line-height: 1.9;
+}
 .pi .eyebrow { margin-bottom: 10px; }
 .pi__name {
-  margin: 0 0 10px;
+  margin: 0 0 24px;
   font-family: var(--display);
   font-weight: 800;
   font-size: clamp(28px, 3.4vw, 40px);
@@ -425,14 +433,20 @@ img { display: block; max-width: 100%; }
   text-transform: uppercase;
   line-height: 1.1;
 }
-.pi__role {
-  margin: 0 0 24px;
+.pi__affil {
+  margin: 24px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.pi__affil p { margin: 0 0 6px; }
+.pi__affil .pi__title {
+  margin-bottom: 10px;
   font-size: 11px;
   letter-spacing: .2em;
   text-transform: uppercase;
   color: var(--blue);
   font-weight: 600;
-  line-height: 1.8;
 }
 .pi__bio { margin: 0 0 20px; font-size: 15px; line-height: 1.75; color: #333; }
 .pi__honors { margin: 0 0 32px; font-size: 13px; line-height: 1.8; color: var(--muted); }
@@ -775,7 +789,9 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
   .newspubs { grid-template-columns: minmax(0, 1fr); gap: 64px; }
   .pi__inner { grid-template-columns: minmax(0, 1fr); gap: 40px; text-align: center; }
   .pi__photo { max-width: 240px; margin: 0 auto; }
+  .pi__contact { max-width: 240px; margin-left: auto; margin-right: auto; }
   .pi__links { justify-content: center; }
+  .pi__bio { text-align: left; }
   .visit-map { padding: 20px 16px 16px; }
   .visit-intro__body { padding: 20px 20px 24px; }
   .allpubs__group { grid-template-columns: minmax(0, 1fr); gap: 0; }
