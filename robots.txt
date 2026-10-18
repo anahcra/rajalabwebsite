@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://rajalabs.lbl.gov/sitemap.xml
+Sitemap: https://anahcra.github.io/rajalabwebsite/sitemap.xml
