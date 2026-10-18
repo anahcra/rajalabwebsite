@@ -6,6 +6,7 @@ Static single-page site for Raja Labs (Nanoscale Spectroscopy, Molecular Foundry
 index.html      page content (all sections)
 css/styles.css  styles + responsive breakpoints
 js/main.js      nav behaviour (transparent → solid on scroll, active section, mobile menu)
+js/ticker.js    animated publications ticker above the full publication list
 assets/         hero photo, CV
 ```
 
