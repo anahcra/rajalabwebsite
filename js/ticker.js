@@ -5,6 +5,10 @@
 
   const NS = 'http://www.w3.org/2000/svg';
   const VIEW_W = 1440, VIEW_H = 860, VISIBLE_H = 620, REPEATS = 3, SPEED = 70; // px of path per second
+  const SHIFT_Y = 95; // the drawing sits 95 units up inside the viewBox
+  // Background photo, positioned so the rocky headland sits under the question loop at any size.
+  const PHOTO = { src: 'assets/ticker-bg.jpg', w: 2400, h: 857, anchor: { x: 430, y: 700 } };
+  const LOOP_CENTER = { x: 235, y: 675 };
   const QUESTIONS = 'can an electron beam see a single exciton? · how fast does charge cross a 2D interface · what does the dielectric environment do to a bandgap · why does the moiré potential move · where does the energy go after absorption · ';
   const PAPERS = [
     'Moiré excitons · Science 2022',
@@ -32,10 +36,12 @@
 
   const svg = el('svg', { viewBox: `0 0 ${VIEW_W} ${VIEW_H}` });
   const defs = el('defs', {}, svg);
-  el('path', { id: 'ticker-in', d: 'M -2000 560 L 220 560 C 340 560 400 490 385 410 C 368 318 272 265 200 305 C 105 360 130 472 220 560 C 320 665 500 760 700 760', fill: 'none' }, defs);
+  // Questions run in from the left, loop down through the headland, then feed the R.
+  el('path', { id: 'ticker-in', d: 'M -2000 520 L 160 520 C 270 520 345 580 345 665 C 345 745 285 795 220 790 C 150 785 112 725 128 665 C 148 595 230 565 330 600 C 470 655 560 760 700 760', fill: 'none' }, defs);
   const outPath = el('path', { d: 'M 750 760 C 980 760 1150 640 1720 520 L 3430 160', fill: 'none' }, defs);
   const len = () => outPath.getTotalLength();
-  const g = el('g', { transform: 'translate(0 -95)' }, svg);
+  const g = el('g', { transform: `translate(0 ${-SHIFT_Y})` }, svg);
+  const photo = el('image', { href: PHOTO.src, preserveAspectRatio: 'none' }, g);
 
   const text = el('text', { class: 'ticker__questions' }, g);
   const tp = el('textPath', { href: '#ticker-in', startOffset: '0' }, text);
@@ -81,6 +87,17 @@
     const s = Math.min(Math.max(W / VIEW_W, H / VIEW_H), H / VISIBLE_H);
     svg.style.width = VIEW_W * s + 'px';
     svg.style.height = VIEW_H * s + 'px';
+
+    // Visible area in drawing units; cover it with the photo, nudged so the anchor meets the loop.
+    const visW = W / s, visH = H / s;
+    const x0 = (VIEW_W - visW) / 2, y0 = (VIEW_H - visH) / 2 + SHIFT_Y;
+    const k = 1.12 * Math.max(visW / PHOTO.w, visH / PHOTO.h);
+    const pw = PHOTO.w * k, ph = PHOTO.h * k;
+    const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+    const px = clamp(LOOP_CENTER.x - PHOTO.anchor.x * k, x0 + visW - pw, x0);
+    const py = clamp(LOOP_CENTER.y - PHOTO.anchor.y * k, y0 + visH - ph, y0);
+    photo.setAttribute('x', px); photo.setAttribute('y', py);
+    photo.setAttribute('width', pw); photo.setAttribute('height', ph);
   }
 
   function place(pill, d, L) {

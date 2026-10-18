@@ -4,6 +4,9 @@
   --blue: #003262;
   --gold: #FDB515;
   --gold-dark: #c99a1f;
+  --bridge: #c0362c;
+  --bridge-dark: #7d2118;
+  --bridge-cream: #fbf3e6;
   --ink: #1a1a1a;
   --paper: #fbfaf7;
   --sand: #f3f0e8;
@@ -458,16 +461,27 @@ img { display: block; max-width: 100%; }
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: var(--sand);
+  background: var(--sand); /* shows until the photo (drawn by js/ticker.js) loads */
 }
 html:not(.js) .ticker { display: none; }
 .ticker svg { display: block; flex-shrink: 0; overflow: visible; }
-.ticker__questions { fill: #a8a294; font-family: var(--body); font-size: 22px; font-weight: 500; letter-spacing: .01em; }
-.ticker__ribbon { fill: none; stroke: var(--blue); stroke-width: 64; }
-.ticker__pill rect { fill: var(--gold); }
-.ticker__pill text { fill: var(--blue); font-family: var(--display); font-size: 16px; font-weight: 800; letter-spacing: .08em; }
-.ticker__box { fill: var(--paper); stroke: var(--blue); stroke-width: 4; }
-.ticker__r { fill: var(--blue); font-family: var(--display); font-size: 72px; font-weight: 800; }
+.ticker__questions {
+  fill: #fff;
+  stroke: rgba(60, 22, 14, .55);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+  paint-order: stroke;
+  font-family: var(--body);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: .01em;
+}
+/* Colours follow the Golden Gate: International Orange ribbon, cream tags, deep bridge red text. */
+.ticker__ribbon { fill: none; stroke: var(--bridge); stroke-width: 64; }
+.ticker__pill rect { fill: var(--bridge-cream); }
+.ticker__pill text { fill: var(--bridge-dark); font-family: var(--display); font-size: 16px; font-weight: 800; letter-spacing: .08em; }
+.ticker__box { fill: var(--bridge-cream); stroke: var(--bridge); stroke-width: 4; }
+.ticker__r { fill: var(--bridge); font-family: var(--display); font-size: 72px; font-weight: 800; }
 
 /* ---------- All publications ---------- */
 
