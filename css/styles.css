@@ -92,6 +92,8 @@ img { display: block; max-width: 100%; }
 
 .list-head {
   display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
   justify-content: space-between;
   align-items: baseline;
   border-bottom: 2px solid var(--ink);
@@ -417,6 +419,50 @@ img { display: block; max-width: 100%; }
 .pub p { margin: 0; font-size: 13.5px; line-height: 1.6; color: #444; }
 .pub strong { color: var(--ink); }
 
+/* ---------- Publications ticker ---------- */
+
+.ticker {
+  height: clamp(340px, 42vw, 580px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--sand);
+}
+html:not(.js) .ticker { display: none; }
+.ticker svg { display: block; flex-shrink: 0; overflow: visible; }
+.ticker__questions { fill: #a8a294; font-family: var(--body); font-size: 22px; font-weight: 500; letter-spacing: .01em; }
+.ticker__ribbon { fill: none; stroke: var(--blue); stroke-width: 64; }
+.ticker__pill rect { fill: var(--gold); }
+.ticker__pill text { fill: var(--blue); font-family: var(--display); font-size: 16px; font-weight: 800; letter-spacing: .08em; }
+.ticker__box { fill: var(--paper); stroke: var(--blue); stroke-width: 4; }
+.ticker__r { fill: var(--blue); font-family: var(--display); font-size: 72px; font-weight: 800; }
+
+/* ---------- All publications ---------- */
+
+.allpubs { padding: 96px 24px 120px; max-width: 1180px; margin: 0 auto; }
+.allpubs .pubs__legend { margin-bottom: 24px; }
+.allpubs__group {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 32px;
+  padding-top: 24px;
+}
+.allpubs__year {
+  position: sticky;
+  top: calc(var(--nav-h-solid) + 20px);
+  align-self: start;
+  margin: 0;
+  padding-top: 14px;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+}
+.pub b { font-weight: 600; color: var(--ink); }
+
 /* ---------- Team ---------- */
 
 .team { background: var(--sand); padding: 120px 24px; }
@@ -553,10 +599,13 @@ img { display: block; max-width: 100%; }
   .pi__inner { grid-template-columns: minmax(0, 1fr); gap: 40px; text-align: center; }
   .pi__photo { max-width: 240px; margin: 0 auto; }
   .pi__links { justify-content: center; }
+  .allpubs__group { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .allpubs__year { position: static; padding-top: 16px; border-bottom: 1px solid var(--rule); padding-bottom: 12px; }
 }
 
 @media (max-width: 600px) {
   .intro, .research, .pi, .newspubs, .team, .talks { padding-top: 88px; padding-bottom: 88px; }
+  .allpubs { padding-top: 72px; padding-bottom: 88px; }
   .statement, .join { padding-top: 96px; padding-bottom: 96px; }
   .section-title { margin-bottom: 48px; }
   .hero__subtitle { letter-spacing: .24em; padding-left: .24em; }
