@@ -19,7 +19,7 @@ sitemap.xml         page list for search engines (update <lastmod> when pages ch
 robots.txt          points crawlers at the sitemap
 ```
 
-Each page repeats the same nav and footer; when adding a page, copy an existing one, mark its nav link with `is-active` and `aria-current="page"` on that page only, give it its own `<title>`, description, canonical and Open Graph tags, and add it to `sitemap.xml`. Canonical/OG URLs use `https://rajalabs.lbl.gov/` (see `CNAME`).
+Each page repeats the same nav and footer; when adding a page, copy an existing one, mark its nav link with `is-active` and `aria-current="page"` on that page only, give it its own `<title>`, description, canonical and Open Graph tags, and add it to `sitemap.xml`. Canonical/OG URLs use the GitHub Pages address `https://anahcra.github.io/rajalabwebsite/`.
 
 ## Local preview
 
