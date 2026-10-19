@@ -238,10 +238,8 @@ img { display: block; max-width: 100%; }
   margin: 18px 0 0;
   font-family: var(--display);
   font-weight: 600;
-  font-size: clamp(18px, 2.6vw, 36px);
-  letter-spacing: .42em;
-  text-transform: uppercase;
-  padding-left: .42em;
+  font-size: clamp(18px, 2.4vw, 32px);
+  letter-spacing: .01em;
   text-shadow: 0 1px 12px rgba(0, 0, 0, .4);
 }
 .hero__affil {
@@ -364,6 +362,9 @@ img { display: block; max-width: 100%; }
   line-height: 1.75;
   color: var(--muted);
 }
+.intro--text .intro__inner { text-align: left; }
+.intro--text .intro__lead { font-size: clamp(19px, 1.9vw, 22px); line-height: 1.55; }
+.intro--text .intro__body { max-width: none; margin-top: 20px; font-size: 16px; }
 .intro--summary { padding-bottom: 56px; }
 .intro--summary .intro__inner { max-width: 820px; text-align: left; }
 .intro--summary .intro__lead { font-size: clamp(20px, 2vw, 24px); line-height: 1.5; }
@@ -375,25 +376,41 @@ img { display: block; max-width: 100%; }
   margin-top: 40px;
 }
 
-/* ---------- Statement band ---------- */
+/* ---------- Explore (home page summary of the top nav) ---------- */
 
-.statement {
-  position: relative;
-  background: var(--blue);
-  color: #fff;
-  padding: 120px 24px;
-  text-align: center;
-  overflow: hidden;
+.explore { background: var(--sand); padding: 88px 24px; }
+.explore__inner { max-width: 1080px; margin: 0 auto; }
+.explore .eyebrow { margin-bottom: 24px; }
+.explore__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
 }
-.statement__text {
-  position: relative;
-  margin: 0 auto;
-  max-width: 860px;
+.explore__card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  padding: 22px 24px 24px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  transition: border-color .25s;
+}
+.explore__card:hover { border-color: var(--gold); }
+.explore__title {
   font-family: var(--display);
-  font-weight: 700;
-  font-size: clamp(28px, 3.6vw, 46px);
-  line-height: 1.2;
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--blue);
 }
+.explore__card:hover .explore__title { color: var(--gold-dark); }
+.explore__text { font-size: 14px; line-height: 1.6; color: var(--muted); }
 
 /* ---------- Research ---------- */
 
@@ -566,7 +583,7 @@ img { display: block; max-width: 100%; }
 }
 .news-item p { margin: 0; font-size: 14px; line-height: 1.55; font-weight: 500; }
 
-/* News page: the home page's news list, full width, with a Paper / Talk / People tag under each date. */
+/* News page: the home page's news list, full width, with a Paper / Talk / Meeting / People tag under each date. */
 .news { padding: 120px 24px; max-width: 900px; margin: 0 auto; }
 .news .news-item { grid-template-columns: 90px minmax(0, 1fr); gap: 20px; }
 .news .news-item p { font-size: 15px; }
@@ -1111,16 +1128,15 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
 }
 
 @media (max-width: 600px) {
-  .intro, .pi, .newspubs, .team, .talks, .news, .visit, .life, .faq, .facilities { padding-top: 88px; padding-bottom: 88px; }
+  .intro, .explore, .pi, .newspubs, .team, .talks, .news, .visit, .life, .faq, .facilities { padding-top: 88px; padding-bottom: 88px; }
   .allpubs { padding-top: 72px; padding-bottom: 88px; }
-  .statement, .join { padding-top: 96px; padding-bottom: 96px; }
+  .join { padding-top: 96px; padding-bottom: 96px; }
   .page-head { padding-top: calc(var(--nav-h-solid) + 64px); padding-bottom: 72px; }
   .page-head:has(> .subnav):not(.page-head--team) { padding-bottom: 120px; }
   .page-head.page-head--team { height: calc(var(--nav-h-solid) + 340px); }
   .subnav__inner { gap: 28px; }
   .join--page { padding-top: calc(var(--nav-h-solid) + 72px); }
   .section-title { margin-bottom: 48px; }
-  .hero__subtitle { letter-spacing: .24em; padding-left: .24em; }
   .hero__affil { letter-spacing: .2em; line-height: 1.8; }
   .talk, .news .news-item { grid-template-columns: minmax(0, 1fr); gap: 6px; }
   .news-item__meta { flex-direction: row; align-items: center; gap: 10px; }
