@@ -753,6 +753,32 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
 .visit-map__tagline { margin: 0; font-size: 14px; line-height: 1.6; color: var(--muted); }
 .visit-map__link { display: block; border-radius: 4px; }
 .visit-map__link img { display: block; width: 100%; height: auto; }
+.visit-map__legend {
+  list-style: none;
+  margin: 24px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 40px;
+}
+.visit-map__item { display: flex; gap: 14px; align-items: flex-start; }
+/* Matches the numbered markers drawn on the map image. */
+.visit-map__num {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 32px; height: 32px;
+  border: 3px solid var(--gold);
+  border-radius: 50%;
+  background: var(--blue);
+  color: #fff;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 15px;
+  line-height: 1;
+}
+.visit-map__text { margin: 3px 0 0; font-size: 15px; line-height: 1.6; color: var(--muted); }
+.visit-map__text strong { display: block; color: var(--ink); font-weight: 600; }
 
 .sr-only {
   position: absolute;
@@ -1043,6 +1069,7 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
   .pi__links { justify-content: center; }
   .pi__bio { text-align: left; }
   .visit-map { padding: 20px 16px 16px; }
+  .visit-map__legend { grid-template-columns: minmax(0, 1fr); }
   .visit-intro__body { padding: 20px 20px 24px; }
   .faq__a { padding-right: 0; }
   .access { grid-template-columns: minmax(0, 1fr); padding: 28px 24px; }
