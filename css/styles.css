@@ -329,29 +329,21 @@ img { display: block; max-width: 100%; }
   opacity: .3;
 }
 
-/* Faded group photo behind the Team and About page titles, as tall as the Facilities header.
-   The photo starts below the nav and sits near its top edge, so heads stay in view and the legs are cropped. */
+/* Faded group photo behind the Team and About page titles. The photo starts below the nav, pinned to its top
+   edge, and the header grows with the photo so the title sits above the tabs on torsos, clear of faces. */
 .page-head.page-head--team {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  height: calc(var(--nav-h-solid) + 400px);
-  padding: var(--nav-h-solid) 24px 0;
+  height: calc(var(--nav-h-solid) + max(400px, 290px + 14vw));
+  padding: var(--nav-h-solid) 24px 88px;
 }
-/* Zoomed out to 85% of the width (never so small that it stops filling the height); its sides fade into the blue. */
 .page-head--team::before {
-  --photo-w: max(85%, 800px);
   content: '';
   position: absolute;
   inset: var(--nav-h-solid) 0 0;
-  background: url(../assets/team.jpg) center 10% / var(--photo-w) auto no-repeat;
-  -webkit-mask-image: linear-gradient(90deg, transparent calc(50% - var(--photo-w) / 2), #000 calc(50% - var(--photo-w) / 2 + 160px), #000 calc(50% + var(--photo-w) / 2 - 160px), transparent calc(50% + var(--photo-w) / 2));
-  mask-image: linear-gradient(90deg, transparent calc(50% - var(--photo-w) / 2), #000 calc(50% - var(--photo-w) / 2 + 160px), #000 calc(50% + var(--photo-w) / 2 - 160px), transparent calc(50% + var(--photo-w) / 2));
+  background: url(../assets/team.jpg) center top / cover no-repeat;
   opacity: .35;
-}
-/* On narrower screens the photo is at least as wide as the screen, so fill the header instead. */
-@media (max-width: 900px) {
-  .page-head--team::before { background-size: cover; -webkit-mask-image: none; mask-image: none; }
 }
 
 /* ---------- Intro ---------- */
