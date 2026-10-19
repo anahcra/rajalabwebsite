@@ -268,11 +268,15 @@ img { display: block; max-width: 100%; }
 
 /* ---------- Page header (inner pages) ---------- */
 
+/* Every inner page header is the same height, sized to the group photo on the People pages, with the title
+   at the same place in each: centred in the band above the tabs, whether or not the page has tabs. */
 .page-head {
+  --head-h: max(400px, 210px + 14vw);
   position: relative;
+  height: calc(var(--nav-h-solid) + var(--head-h));
   background: var(--blue);
   color: #fff;
-  padding: calc(var(--nav-h-solid) + 96px) 24px 96px;
+  padding: calc(var(--nav-h-solid) + var(--head-h) / 2 - 77px) 24px 0;
   text-align: center;
   overflow: hidden;
 }
@@ -287,19 +291,11 @@ img { display: block; max-width: 100%; }
   text-transform: uppercase;
   line-height: 1;
 }
-.page-head__lede {
-  margin: 28px auto 0;
-  max-width: 640px;
-  font-size: var(--text-lg);
-  line-height: 1.7;
-  color: rgba(255, 255, 255, .94);
-}
 .page-head .btn { margin-top: 32px; }
 /* Content sits closer to the page header than to other sections. */
 .page-head + section:not(.publications) { padding-top: 56px; }
 
 /* Tabs along the bottom edge of a page header, linking the pages grouped under one nav item. */
-.page-head:has(> .subnav) { padding-bottom: 144px; }
 .subnav {
   position: absolute;
   left: 0; right: 0; bottom: 0;
@@ -337,35 +333,27 @@ img { display: block; max-width: 100%; }
 .page-head--visit::before {
   content: '';
   position: absolute;
-  inset: 0;
+  inset: var(--nav-h-solid) 0 0;
   background: url(../assets/molecular-foundry.jpg) center 35% / cover no-repeat;
   opacity: .3;
 }
 
-/* Faded optics table photo behind the Facilities page title. */
-.page-head--facilities::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: url(../assets/facilities.jpg) center / cover no-repeat;
-  opacity: .3;
-}
-
-/* Faded group photo behind the Team and About page titles. The photo starts below the nav, pinned to its top
-   edge, and the header grows with the photo so the title sits above the tabs on torsos, clear of faces. */
-.page-head.page-head--team {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  height: calc(var(--nav-h-solid) + max(400px, 210px + 14vw));
-  padding: var(--nav-h-solid) 24px 88px;
-}
+/* Faded group photo behind the Team and About page titles, starting below the nav and pinned to its top edge. */
 .page-head--team::before {
   content: '';
   position: absolute;
   inset: var(--nav-h-solid) 0 0;
   background: url(../assets/team.jpg) center top / cover no-repeat;
   opacity: .35;
+}
+
+/* Faded optics table photo behind the Facilities page title. */
+.page-head--facilities::before {
+  content: '';
+  position: absolute;
+  inset: var(--nav-h-solid) 0 0;
+  background: url(../assets/facilities.jpg) center / cover no-repeat;
+  opacity: .3;
 }
 
 /* ---------- Intro ---------- */
@@ -639,7 +627,7 @@ img { display: block; max-width: 100%; }
 
 /* ---------- Publications ticker ---------- */
 
-.page-head.page-head--fleet { padding: var(--nav-h-solid) 0 0; }
+.page-head.page-head--fleet { height: auto; padding: var(--nav-h-solid) 0 0; }
 .fleet {
   position: relative;
   height: max(360px, 100vw * 540 / 1440); /* the photo's top 540px, never shorter than 360px */
@@ -964,6 +952,7 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
 
 .life { background: var(--sand); padding: 120px 24px; }
 .life__inner { max-width: 1080px; margin: 0 auto; }
+.life__lede { margin: 0 auto 48px; max-width: 720px; text-align: center; font-size: var(--text-lg); line-height: 1.7; }
 .life__grid {
   list-style: none;
   margin: 0;
@@ -1156,9 +1145,7 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
   .intro, .explore, .pi, .newspubs, .team, .talks, .news, .visit, .life, .faq, .facilities { padding-top: 88px; padding-bottom: 88px; }
   .allpubs { padding-top: 72px; padding-bottom: 88px; }
   .join { padding-top: 96px; padding-bottom: 96px; }
-  .page-head { padding-top: calc(var(--nav-h-solid) + 64px); padding-bottom: 72px; }
-  .page-head:has(> .subnav):not(.page-head--team) { padding-bottom: 120px; }
-  .page-head.page-head--team { height: calc(var(--nav-h-solid) + 340px); }
+  .page-head { --head-h: 340px; }
   .subnav__inner { gap: 28px; }
   .join--page { padding-top: calc(var(--nav-h-solid) + 72px); }
   .section-title { margin-bottom: 48px; }
