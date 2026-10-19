@@ -329,23 +329,22 @@ img { display: block; max-width: 100%; }
   opacity: .3;
 }
 
-/* Faded group photo behind the Team and About page titles, as tall as the Publications header. */
+/* Faded group photo behind the Team and About page titles, as tall as the Facilities header.
+   The photo starts below the nav and sits near its top edge, so heads stay in view and the legs are cropped. */
 .page-head.page-head--team {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(var(--nav-h-solid) + max(360px, 100vw * 540 / 1440));
+  height: calc(var(--nav-h-solid) + 400px);
   padding: var(--nav-h-solid) 24px 0;
 }
 .page-head--team::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background: url(../assets/team.jpg) center 15% / cover no-repeat;
+  inset: var(--nav-h-solid) 0 0;
+  background: url(../assets/team.jpg) center 10% / cover no-repeat;
   opacity: .35;
 }
-/* About page: the same photo, cropped at the legs to the height of the Facilities header. */
-.page-head.page-head--pi { height: calc(var(--nav-h-solid) + 400px); }
 
 /* ---------- Intro ---------- */
 
@@ -1058,7 +1057,7 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
   .statement, .join { padding-top: 96px; padding-bottom: 96px; }
   .page-head { padding-top: calc(var(--nav-h-solid) + 64px); padding-bottom: 72px; }
   .page-head:has(> .subnav):not(.page-head--team) { padding-bottom: 120px; }
-  .page-head.page-head--pi { height: calc(var(--nav-h-solid) + 340px); }
+  .page-head.page-head--team { height: calc(var(--nav-h-solid) + 340px); }
   .page-head--pi .page-head__title { font-size: 7.5vw; } /* "Investigator" fits on one line down to 320px */
   .subnav__inner { gap: 28px; }
   .join--page { padding-top: calc(var(--nav-h-solid) + 72px); }
