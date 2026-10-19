@@ -1,11 +1,12 @@
 // Publications header ("paper fleet"): questions from the papers run in from the hillside and fade
-// into a honeycomb wavefront; the papers leave it as folded paper boats across the bay.
+// into a wavefront; the papers leave it as folded paper boats across the bay.
 (function () {
   const host = document.getElementById('pub-ticker');
   if (!host) return;
 
   const NS = 'http://www.w3.org/2000/svg';
-  const RED = '#C23A2B', INK = '#8A2A1D', PAPER = '#FBF5EC', FOLD = '#EADCC6';
+  const BLUE = '#003262', INK = '#8A2A1D', PAPER = '#FBF5EC', FOLD = '#EADCC6';
+  const WAVE = '#6B9DBC', WAVE_LIGHT = '#9CC3DA'; // lighter tints of the bay's blue (#3A6886)
   const SANS = "'IBM Plex Sans', Helvetica, Arial, sans-serif";
 
   // One entry per paper: the label it sails under, the question it answers, and its entry in the list below.
@@ -34,8 +35,8 @@
     { label: '1D CORRELATED STATES · NAT. COMM. 2025', q: 'can graphene drive correlated states along a line defect?', id: 'pub-26' },
   ];
 
-  // Four lanes of questions, dealt round-robin from the papers.
-  const LANES = 4;
+  // Three lanes of questions, dealt round-robin from the papers.
+  const LANES = 3;
   const LINES = Array.from({ length: LANES }, (_, i) => PAPERS.filter((_, k) => k % LANES === i).map((p) => p.q));
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -51,20 +52,26 @@
   const svg = el('svg', { viewBox: '0 0 1440 580', preserveAspectRatio: 'xMidYMid slice' });
   svg.innerHTML = `
     <defs>
-      <path id="tk-q0" d="M -60,262 C 150,262 260,395 510,462"/>
-      <path id="tk-q1" d="M -60,335 C 170,350 300,450 510,462"/>
-      <path id="tk-q2" d="M -60,408 C 190,430 330,500 510,462"/>
-      <path id="tk-q3" d="M -60,481 C 210,505 380,535 510,462"/>
-      <path id="tk-boat-path" d="M 510,462 C 740,445 1120,370 1580,280"/>
-      <radialGradient id="tk-fade-g" cx="510" cy="462" r="420" gradientUnits="userSpaceOnUse">
+      <path id="tk-q0" d="M -60,250 C 140,268 300,322 455,372"/>
+      <path id="tk-q1" d="M -60,300 C 160,318 320,356 455,372"/>
+      <path id="tk-q2" d="M -60,350 C 180,362 340,378 455,372"/>
+      <path id="tk-boat-path" d="M 455,372 C 560,398 1000,366 1580,290"/>
+      <radialGradient id="tk-fade-g" cx="455" cy="372" r="420" gradientUnits="userSpaceOnUse">
         <stop offset="0" stop-color="#000"/><stop offset=".07" stop-color="#000"/><stop offset=".2" stop-color="#444"/>
         <stop offset=".4" stop-color="#bbb"/><stop offset=".6" stop-color="#fff"/>
       </radialGradient>
+      <!-- The hillside, traced from the photo a few units inside its edge and stepping round the foot of the
+           near tower, so the questions stay on the rock. -->
+      <clipPath id="tk-hill">
+        <polygon points="-100,209 0,209 40,214 80,219 100,222 120,234 140,245 160,255 180,265 200,274 220,282 240,287
+          260,294 272,298 272,344 358,344 380,350 400,362 420,370 440,378 460,387 480,399 500,412 520,426 540,441
+          560,456 580,471 600,484 620,500 640,514 660,527 680,544 700,561 720,577 740,600 -100,600"/>
+      </clipPath>
       <mask id="tk-fade" maskUnits="userSpaceOnUse" x="-100" y="-100" width="1700" height="800">
         <rect x="-100" y="-100" width="1700" height="800" fill="url(#tk-fade-g)"/>
       </mask>
       <radialGradient id="tk-glow">
-        <stop offset="0" stop-color="${PAPER}" stop-opacity=".9"/><stop offset="1" stop-color="${PAPER}" stop-opacity="0"/>
+        <stop offset="0" stop-color="${WAVE_LIGHT}" stop-opacity=".9"/><stop offset="1" stop-color="${WAVE_LIGHT}" stop-opacity="0"/>
       </radialGradient>
       <!-- Paper: fine fibre grain over the fill, resting on a soft shadow cast onto the water. -->
       <filter id="tk-paper" x="-15%" y="-40%" width="130%" height="190%" color-interpolation-filters="sRGB">
@@ -102,12 +109,11 @@
       </filter>
     </defs>
     <image href="assets/golden-gate.jpg" x="0" y="0" width="1440" height="580" preserveAspectRatio="xMidYMid slice"/>
-    <g class="ticker__questions" mask="url(#tk-fade)" filter="url(#tk-text-shadow)"></g>
+    <g clip-path="url(#tk-hill)"><g class="ticker__questions" mask="url(#tk-fade)" filter="url(#tk-text-shadow)"></g></g>
     <g class="ticker__fleet"></g>
-    <g transform="translate(510,462)">
-      <circle class="ticker__glow" r="46" fill="url(#tk-glow)" opacity=".7"/>
+    <g transform="translate(455,372)">
+      <circle class="ticker__glow" r="46" fill="url(#tk-glow)" opacity=".4"/>
       <g class="ticker__arcs" filter="url(#tk-paper)"></g>
-      <g class="ticker__source" filter="url(#tk-paper)" opacity=".95"></g>
     </g>`;
   host.appendChild(svg);
 
@@ -131,44 +137,34 @@
        <g fill="#6E6A64" font-size="3.9">${newsTile}</g>
      </pattern>`).join(''));
 
-  // Show the photo from its top edge (so the bridge tower stays whole) down to y=540, matching the
-  // CSS height; the wavefront at (510,462) sits clear of the trimmed bottom.
-  // On narrower screens, crop the sides around the wavefront so the papers stay in view.
-  const BAND_H = 540;
+  // Show the full width of the photo from its top edge, so both bridge towers stay whole. Everything that
+  // moves sits above y=390 (the wavefront is in the water just below the end of the deck, at (455,372), and
+  // the boats dip under the deck before heading out), so a header too short to reach it gives up at most
+  // the 12 of sky above the near tower. A tall, narrow header shows no more than 440 down and crops the
+  // sides around the wavefront instead.
+  const MIN_H = 390, MAX_H = 440;
   function fit() {
     const W = host.clientWidth, H = host.clientHeight;
     if (!W || !H) return;
-    let x = 0, w = 1440, h = BAND_H;
-    if (W / H < w / h) {
+    let x = 0, y = 0, w = 1440, h = w * H / W;
+    if (h > MAX_H) {
+      h = MAX_H;
       w = h * W / H;
-      x = Math.min(Math.max(510 - w * .1, 0), 1440 - w);
-    } else {
-      h = w * H / W;
+      x = Math.min(Math.max(455 - w * .1, 0), 1440 - w);
+    } else if (h < MIN_H) {
+      y = Math.min(MIN_H - h, 12);
     }
-    svg.setAttribute('viewBox', `${x.toFixed(1)} 0 ${w.toFixed(1)} ${h.toFixed(1)}`);
+    svg.setAttribute('viewBox', `${x.toFixed(1)} ${y.toFixed(1)} ${w.toFixed(1)} ${h.toFixed(1)}`);
   }
   fit();
   if (window.ResizeObserver) new ResizeObserver(fit).observe(host);
   else window.addEventListener('resize', fit);
 
-  /* ---------- wavefront: honeycomb source + pulsing arcs ---------- */
-  function hexVerts(r) {
-    return Array.from({ length: 6 }, (_, i) => {
-      const a = Math.PI / 3 * i + Math.PI / 6;
-      return (r * Math.cos(a)).toFixed(2) + ',' + (r * Math.sin(a)).toFixed(2);
-    });
-  }
-  const hexPts = (r) => hexVerts(r).join(' ');
-  // A folded paper hexagon: six facets, alternately lit and in shade, creased at the centre.
-  const hv = hexVerts(12);
-  svg.querySelector('.ticker__source').innerHTML =
-    hv.map((v, i) => `<polygon points="0,0 ${v} ${hv[(i + 1) % 6]}" fill="${i % 2 ? '#A3301F' : RED}"/>`).join('') +
-    `<polygon points="${hexPts(12)}" fill="none" stroke="${PAPER}" stroke-opacity=".7" stroke-width="1.2" stroke-linejoin="round"/>
-     <polygon points="${hexPts(3.5)}" fill="${PAPER}"/>`;
+  /* ---------- wavefront: pulsing arcs ---------- */
   const glow = svg.querySelector('.ticker__glow');
   const arcsG = svg.querySelector('.ticker__arcs');
   const ARC_N = 6, ARC_PERIOD = 4.2, R0 = 16, R1 = 128, SQUASH = .74, SEG = 36;
-  const arcs = Array.from({ length: ARC_N }, (_, i) => el('path', { fill: i % 2 ? RED : PAPER }, arcsG));
+  const arcs = Array.from({ length: ARC_N }, (_, i) => el('path', { fill: i % 2 ? WAVE : WAVE_LIGHT }, arcsG));
   const rnd = (n) => { const x = Math.sin(n * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
   // A ripple as a filled ribbon: its radius wanders and its width swells and tapers to points at the
   // ends, both drifting with time; each new ripple gets its own span, tilt and wobble (seed k).
@@ -267,15 +263,15 @@
         ${face(front, 'url(#tk-hull)', 'tk-news', ` stroke="${edge}" stroke-width=".9"`)}
         <path d="${front}" fill="url(#tk-hull-ends)"/>
         </g>
-        <text x="${w / 2}" y="${base}" text-anchor="middle" font-weight="700" font-size="${FS - 1}" letter-spacing="1.6" fill="#C8261A">${paper.label}</text>
+        <text x="${w / 2}" y="${base}" text-anchor="middle" font-weight="700" font-size="${FS - 1}" letter-spacing="1.6" fill="${BLUE}">${paper.label}</text>
       </g>`;
     return { g, w };
   }
-  const SPEED = 34, GAP = 70, EMERGE = 210; // papers grow out of the wavefront over the first 210px
+  const SPEED = 34, GAP = 240, EMERGE = 210; // papers grow out of the wavefront over the first 210px
   const route = svg.querySelector('#tk-boat-path'), len = route.getTotalLength();
   let items = [], pubIdx = 0, pending = null;
   const ease = (x) => 1 - Math.pow(1 - Math.min(Math.max(x, 0), 1), 3);
-  const baseScale = (f) => 1 - .5 * f; // boats shrink to half size as they sail off
+  const baseScale = (f) => .6 * (1 - .5 * f); // boats shrink to half size as they sail off
 
   function place(it, t) {
     const f = Math.min(it.d / len, 1), p = route.getPointAtLength(Math.max(it.d, 0));

@@ -627,24 +627,24 @@ img { display: block; max-width: 100%; }
 
 /* ---------- Publications ticker ---------- */
 
-.page-head.page-head--fleet { height: auto; padding: var(--nav-h-solid) 0 0; }
+.page-head.page-head--fleet { padding: var(--nav-h-solid) 0 0; }
 .fleet {
   position: relative;
-  height: max(360px, 100vw * 540 / 1440); /* the photo's top 540px, never shorter than 360px */
+  height: 100%;
   overflow: hidden;
   background: #5b86b5 url(../assets/golden-gate.jpg) 35% 0 / cover no-repeat;
 }
-/* Title and button sit in the open sky, above the bridge's main cable. */
+/* Title at the same height as on the other page headers, with the button below it. */
 .fleet__head {
   position: absolute;
-  top: 6%;
+  top: calc(var(--head-h) / 2 - 38px);
   left: 0;
   right: 0;
   z-index: 1;
   text-align: center;
   pointer-events: none;
 }
-.fleet__title { color: var(--blue); font-size: clamp(2.25rem, 4.17vw, 4rem); }
+.fleet__title { color: #fff; text-shadow: 0 2px 14px rgba(0, 20, 45, .75), 0 1px 3px rgba(0, 20, 45, .6); }
 .fleet__head .btn { margin-top: 16px; padding: 12px 22px; pointer-events: auto; }
 .ticker { position: absolute; inset: 0; }
 html:not(.js) .ticker { display: none; }
