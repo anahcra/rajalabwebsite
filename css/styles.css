@@ -338,12 +338,20 @@ img { display: block; max-width: 100%; }
   height: calc(var(--nav-h-solid) + 400px);
   padding: var(--nav-h-solid) 24px 0;
 }
+/* Zoomed out to 85% of the width (never so small that it stops filling the height); its sides fade into the blue. */
 .page-head--team::before {
+  --photo-w: max(85%, 800px);
   content: '';
   position: absolute;
   inset: var(--nav-h-solid) 0 0;
-  background: url(../assets/team.jpg) center 10% / cover no-repeat;
+  background: url(../assets/team.jpg) center 10% / var(--photo-w) auto no-repeat;
+  -webkit-mask-image: linear-gradient(90deg, transparent calc(50% - var(--photo-w) / 2), #000 calc(50% - var(--photo-w) / 2 + 160px), #000 calc(50% + var(--photo-w) / 2 - 160px), transparent calc(50% + var(--photo-w) / 2));
+  mask-image: linear-gradient(90deg, transparent calc(50% - var(--photo-w) / 2), #000 calc(50% - var(--photo-w) / 2 + 160px), #000 calc(50% + var(--photo-w) / 2 - 160px), transparent calc(50% + var(--photo-w) / 2));
   opacity: .35;
+}
+/* On narrower screens the photo is at least as wide as the screen, so fill the header instead. */
+@media (max-width: 900px) {
+  .page-head--team::before { background-size: cover; -webkit-mask-image: none; mask-image: none; }
 }
 
 /* ---------- Intro ---------- */
