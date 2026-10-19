@@ -36,7 +36,7 @@ body {
   text-wrap: pretty;
 }
 /* Thinner rendering only for light-on-dark text; dark text on paper keeps the platform's heavier default. */
-.hero, .page-head, .access, .join { -webkit-font-smoothing: antialiased; }
+.hero, .page-head, .access { -webkit-font-smoothing: antialiased; }
 
 a { color: var(--blue); text-decoration: none; }
 a:hover { color: var(--gold-text); }
@@ -1040,42 +1040,15 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
 
 /* ---------- Join ---------- */
 
-.join {
-  position: relative;
-  background: var(--blue);
-  color: #fff;
-  padding: 140px 24px;
-  text-align: center;
-  overflow: hidden;
-}
+.join { padding: 120px 24px; text-align: center; }
+/* Warm glow in the corner of the Join Us page header. */
 .join__glow {
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse at 70% 110%, rgba(253, 181, 21, .28), transparent 55%);
 }
-.join--page {
-  min-height: calc(100vh - 120px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: calc(var(--nav-h-solid) + 120px);
-}
-.join__inner { position: relative; max-width: 640px; margin: 0 auto; }
-.join__title {
-  margin: 0 0 24px;
-  font-family: var(--display);
-  font-weight: 900;
-  font-size: clamp(3rem, 7.5vw, 6rem);
-  letter-spacing: .04em;
-  text-transform: uppercase;
-  line-height: .95;
-}
-.join__body {
-  margin: 0 0 40px;
-  font-size: var(--text-lg);
-  line-height: 1.7;
-  color: rgba(255, 255, 255, .94);
-}
+.join__inner { max-width: 720px; margin: 0 auto; }
+.join__body { margin: 0 0 40px; font-size: var(--text-lg); line-height: 1.7; }
 
 /* ---------- Footer ---------- */
 
@@ -1142,12 +1115,10 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
 }
 
 @media (max-width: 600px) {
-  .intro, .explore, .pi, .newspubs, .team, .talks, .news, .visit, .life, .faq, .facilities { padding-top: 88px; padding-bottom: 88px; }
+  .intro, .explore, .pi, .newspubs, .team, .talks, .news, .visit, .life, .faq, .facilities, .join { padding-top: 88px; padding-bottom: 88px; }
   .allpubs { padding-top: 72px; padding-bottom: 88px; }
-  .join { padding-top: 96px; padding-bottom: 96px; }
   .page-head { --head-h: 340px; }
   .subnav__inner { gap: 28px; }
-  .join--page { padding-top: calc(var(--nav-h-solid) + 72px); }
   .section-title { margin-bottom: 48px; }
   .hero__affil { letter-spacing: .2em; line-height: 1.8; }
   .talk, .news .news-item { grid-template-columns: minmax(0, 1fr); gap: 6px; }
