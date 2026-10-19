@@ -342,6 +342,15 @@ img { display: block; max-width: 100%; }
   opacity: .3;
 }
 
+/* Faded optics table photo behind the Facilities page title. */
+.page-head--facilities::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url(../assets/facilities.jpg) center / cover no-repeat;
+  opacity: .3;
+}
+
 /* Faded group photo behind the Team and About page titles. The photo starts below the nav, pinned to its top
    edge, and the header grows with the photo so the title sits above the tabs on torsos, clear of faces. */
 .page-head.page-head--team {
