@@ -344,6 +344,8 @@ img { display: block; max-width: 100%; }
   background: url(../assets/team.jpg) center 15% / cover no-repeat;
   opacity: .35;
 }
+/* About page: the same photo, cropped at the legs to the height of the Facilities header. */
+.page-head.page-head--pi { height: calc(var(--nav-h-solid) + 400px); }
 
 /* ---------- Intro ---------- */
 
@@ -1056,6 +1058,8 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
   .statement, .join { padding-top: 96px; padding-bottom: 96px; }
   .page-head { padding-top: calc(var(--nav-h-solid) + 64px); padding-bottom: 72px; }
   .page-head:has(> .subnav):not(.page-head--team) { padding-bottom: 120px; }
+  .page-head.page-head--pi { height: calc(var(--nav-h-solid) + 340px); }
+  .page-head--pi .page-head__title { font-size: 7.5vw; } /* "Investigator" fits on one line down to 320px */
   .subnav__inner { gap: 28px; }
   .join--page { padding-top: calc(var(--nav-h-solid) + 72px); }
   .section-title { margin-bottom: 48px; }
