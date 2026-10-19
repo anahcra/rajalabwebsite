@@ -161,6 +161,7 @@ img { display: block; max-width: 100%; }
   letter-spacing: .18em;
   text-transform: uppercase;
   font-weight: 500;
+  white-space: nowrap;
   padding: 6px 0;
   color: inherit;
   transition: color .25s;
@@ -1006,7 +1007,7 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
   .nav__links { gap: 20px; }
 }
 
-@media (max-width: 860px) {
+@media (max-width: 900px) {
   .nav { padding: 0 24px; }
   .nav__toggle { display: flex; }
   .nav__links {
