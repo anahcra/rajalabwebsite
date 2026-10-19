@@ -329,7 +329,7 @@ img { display: block; max-width: 100%; }
   opacity: .3;
 }
 
-/* Faded group photo behind the Team page title, as tall as the Publications header. */
+/* Faded group photo behind the Team and About page titles, as tall as the Publications header. */
 .page-head.page-head--team {
   display: flex;
   align-items: center;
