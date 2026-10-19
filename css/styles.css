@@ -335,7 +335,7 @@ img { display: block; max-width: 100%; }
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  height: calc(var(--nav-h-solid) + max(400px, 290px + 14vw));
+  height: calc(var(--nav-h-solid) + max(400px, 210px + 14vw));
   padding: var(--nav-h-solid) 24px 88px;
 }
 .page-head--team::before {
@@ -1058,7 +1058,6 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
   .page-head { padding-top: calc(var(--nav-h-solid) + 64px); padding-bottom: 72px; }
   .page-head:has(> .subnav):not(.page-head--team) { padding-bottom: 120px; }
   .page-head.page-head--team { height: calc(var(--nav-h-solid) + 340px); }
-  .page-head--pi .page-head__title { font-size: 7.5vw; } /* "Investigator" fits on one line down to 320px */
   .subnav__inner { gap: 28px; }
   .join--page { padding-top: calc(var(--nav-h-solid) + 72px); }
   .section-title { margin-bottom: 48px; }
