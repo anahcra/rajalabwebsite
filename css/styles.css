@@ -1127,7 +1127,7 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
 
 /* ---------- Join ---------- */
 
-.join { padding: var(--section-y) 24px; text-align: center; }
+.join { padding: var(--section-y) 24px; }
 /* Faded photos of deer, goats and turkeys behind the Join, Lab Life and FAQ page titles. */
 .page-head--join::before {
   content: '';
@@ -1142,8 +1142,51 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
   inset: 0;
   background: radial-gradient(ellipse at 70% 110%, rgba(253, 181, 21, .28), transparent 55%);
 }
-.join__inner { max-width: 720px; margin: 0 auto; }
-.join__body { margin: 0 0 40px; font-size: var(--text-lg); line-height: 1.7; }
+.join__inner { max-width: 1080px; margin: 0 auto; }
+.join__lede { margin: 0 0 72px; max-width: 760px; font-size: clamp(1.125rem, 1.6vw, 1.3125rem); line-height: 1.65; }
+.join__title {
+  margin: 0 0 28px;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 2.4vw, 1.875rem);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+.join__ways { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 40px 48px; }
+.way { padding-top: 20px; border-top: 3px solid var(--blue); }
+.way__title {
+  margin: 0 0 12px;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.125rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+.way p { margin: 0; font-size: var(--text-sm); line-height: 1.7; color: var(--muted); }
+.way p + p { margin-top: 12px; }
+.way a { font-weight: 500; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--rule); }
+
+/* Get-in-touch band at the foot of the Join page: blue with the header's gold glow. */
+.contact {
+  padding: 64px 24px;
+  background: var(--blue) radial-gradient(ellipse at 100% 120%, rgba(253, 181, 21, .25), transparent 60%);
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+.contact__inner { max-width: 1080px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 28px 48px; }
+.contact__title {
+  margin: 0 0 10px;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 2.4vw, 1.875rem);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.contact__text { margin: 0; max-width: 600px; font-size: var(--text); line-height: 1.7; color: rgba(255, 255, 255, .94); }
+.btn--gold { padding: 16px 28px; background: var(--gold); color: var(--blue); border-color: var(--gold); text-transform: none; letter-spacing: .02em; font-size: var(--text-sm); font-weight: 700; }
+.btn--gold:hover { background: #fff; border-color: #fff; color: var(--blue); }
 
 /* ---------- Footer ---------- */
 
