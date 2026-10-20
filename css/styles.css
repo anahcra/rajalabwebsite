@@ -328,6 +328,12 @@ img { display: block; max-width: 100%; }
 .subnav__link:hover { color: #fff; }
 .subnav__link.is-active { color: var(--gold); }
 .subnav__link.is-active::after { width: 100%; }
+/* People pages: larger PI / Team tabs, with the title centered in the space between the nav and the tabs. */
+.page-head--team { display: flex; flex-direction: column; padding: var(--nav-h-solid) 0 0; }
+.page-head--team .page-head__inner { width: 100%; margin: auto; padding: 0 24px; }
+.page-head--team .subnav { position: relative; }
+.page-head--team .subnav__inner { gap: 56px; }
+.page-head--team .subnav__link { padding: 20px 0 18px; font-size: 1.25rem; }
 
 /* Faded Molecular Foundry photo behind the Visit page title. */
 .page-head--visit::before {
