@@ -333,12 +333,13 @@ img { display: block; max-width: 100%; }
 .subnav__link:hover { color: #fff; }
 .subnav__link.is-active { color: var(--gold); }
 .subnav__link.is-active::after { width: 100%; }
-/* People pages: larger PI / Team tabs, with the title centered in the space between the nav and the tabs. */
-.page-head--team { display: flex; flex-direction: column; padding: var(--nav-h-solid) 0 0; }
-.page-head--team .page-head__inner { width: 100%; margin: auto; padding: 0 24px; }
-.page-head--team .subnav { position: relative; }
-.page-head--team .subnav__inner { gap: 56px; }
-.page-head--team .subnav__link { padding: 20px 0 18px; font-size: 1.25rem; }
+/* Grouped pages (People: PI / Team; Join Us: Join Us / Lab Life / FAQ): larger tabs, with the title centered
+   in the space between the nav and the tabs. */
+.page-head--tabs { display: flex; flex-direction: column; padding: var(--nav-h-solid) 0 0; }
+.page-head--tabs .page-head__inner { width: 100%; margin: auto; padding: 0 24px; }
+.page-head--tabs .subnav { position: relative; }
+.page-head--tabs .subnav__inner { gap: 56px; }
+.page-head--tabs .subnav__link { padding: 20px 0 18px; font-size: 1.25rem; }
 
 /* Faded view over Berkeley to the Bay and San Francisco behind the Visit page title. */
 .page-head--visit::before {
@@ -375,6 +376,15 @@ img { display: block; max-width: 100%; }
   background: url(../assets/research.jpg) center / cover no-repeat;
   opacity: .3;
 }
+
+/* Home page stream (js/stream.js): each following page opens with its header as a shorter banner.
+   Scoped to .stream so it outranks the per-page header rules below. */
+.stream .page-head { height: auto; padding: 96px 24px; }
+.stream .page-head::before { inset: 0; }
+.stream .page-head__title a { color: inherit; }
+.stream .page-head__title a:hover { color: var(--gold); }
+.stream .page-head.page-head--fleet { padding: 96px 24px; background: #5b86b5 url(../assets/golden-gate.jpg) 35% 30% / cover no-repeat; }
+.stream .page-head--fleet .page-head__title { text-shadow: 0 2px 14px rgba(0, 20, 45, .75), 0 1px 3px rgba(0, 20, 45, .6); }
 
 /* ---------- Intro ---------- */
 
@@ -1078,7 +1088,7 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
 /* ---------- Join ---------- */
 
 .join { padding: var(--section-y) 24px; text-align: center; }
-/* Faded photos of deer, goats and turkeys behind the Join Us page title. */
+/* Faded photos of deer, goats and turkeys behind the Join Us, Lab Life and FAQ page titles. */
 .page-head--join::before {
   content: '';
   position: absolute;
@@ -1086,7 +1096,7 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
   background: url(../assets/join.jpg) center / cover no-repeat;
   opacity: .3;
 }
-/* Warm glow in the corner of the Join Us page header. */
+/* Warm glow in the corner of the Join Us, Lab Life and FAQ page headers. */
 .join__glow {
   position: absolute;
   inset: 0;
@@ -1165,6 +1175,8 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
   .allpubs { padding-top: 72px; }
   .page-head { --head-h: 340px; }
   .subnav__inner { gap: 28px; }
+  .page-head--tabs .subnav__inner { gap: 28px; }
+  .page-head--tabs .subnav__link { font-size: 1.125rem; }
   .section-title { margin-bottom: 48px; }
   .hero__affil { letter-spacing: .2em; line-height: 1.8; }
   .member { flex-basis: 150px; }
