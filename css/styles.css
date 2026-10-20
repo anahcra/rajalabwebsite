@@ -110,7 +110,6 @@ img { display: block; max-width: 100%; }
   padding-bottom: 12px;
   margin-bottom: 8px;
 }
-.list-head--pubs { margin-bottom: 12px; }
 .list-head__title {
   margin: 0;
   font-family: var(--display);
@@ -595,16 +594,12 @@ img { display: block; max-width: 100%; }
 .pi__press a:hover { color: var(--gold-text); }
 .pi__press-src { display: block; margin-top: 4px; font-weight: 400; color: var(--muted); }
 
-/* ---------- News + Publications ---------- */
+/* ---------- News ---------- */
 
-.newspubs {
-  padding: 120px 24px;
-  max-width: 1180px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  gap: 80px;
-}
+/* Same content width as In the News below, so the edges line up. */
+.news { padding: 120px 24px; max-width: 1180px; margin: 0 auto; }
+/* Two columns, newest first reading across each row. */
+.news__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 64px; }
 .news-item {
   display: grid;
   grid-template-columns: 84px minmax(0, 1fr);
@@ -630,7 +625,6 @@ img { display: block; max-width: 100%; }
 /* ---------- In the News (Molecular Foundry stories) ---------- */
 
 .press { background: var(--sand); padding: 88px 24px; }
-/* Same content width as News + Key Publications above, so the edges line up. */
 .press__inner { max-width: 1132px; margin: 0 auto; }
 .press .list-head { margin-bottom: 24px; }
 /* Four across, then two, so the eight stories always fill whole rows. */
@@ -1141,7 +1135,7 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
 }
 
 @media (max-width: 860px) {
-  .newspubs { grid-template-columns: minmax(0, 1fr); gap: 64px; }
+  .news__grid { grid-template-columns: minmax(0, 1fr); }
   .press__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pi__inner { grid-template-columns: minmax(0, 1fr); gap: 40px; text-align: center; }
   .pi__photo { max-width: 240px; margin: 0 auto; }
@@ -1159,7 +1153,7 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
 }
 
 @media (max-width: 600px) {
-  .intro, .explore, .pi, .newspubs, .press, .team, .visit, .life, .faq, .facilities, .join { padding-top: 88px; padding-bottom: 88px; }
+  .intro, .explore, .pi, .news, .press, .team, .visit, .life, .faq, .facilities, .join { padding-top: 88px; padding-bottom: 88px; }
   .allpubs { padding-top: 72px; padding-bottom: 88px; }
   .page-head { --head-h: 340px; }
   .subnav__inner { gap: 28px; }
