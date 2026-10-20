@@ -590,6 +590,10 @@ img { display: block; max-width: 100%; }
 .pi__honors { margin: 0 0 32px; font-size: var(--text-sm); line-height: 1.8; color: var(--muted); }
 .pi__honors strong { color: var(--ink); }
 .pi__links { display: flex; gap: 14px; flex-wrap: wrap; }
+.pi__press { margin-top: 56px; text-align: left; }
+.pi__press a { color: var(--ink); }
+.pi__press a:hover { color: var(--gold-text); }
+.pi__press-src { display: block; margin-top: 4px; font-weight: 400; color: var(--muted); }
 
 /* ---------- News + Publications ---------- */
 
