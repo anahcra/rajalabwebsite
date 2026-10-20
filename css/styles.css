@@ -731,19 +731,6 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
 }
 .alumni__list { margin: 0; font-size: var(--text-sm); line-height: 1.8; color: var(--muted); }
 
-/* ---------- Talks ---------- */
-
-.talks { padding: 120px 24px; max-width: 900px; margin: 0 auto; }
-.talk {
-  display: grid;
-  grid-template-columns: 104px minmax(0, 1fr);
-  gap: 20px;
-  padding: 18px 0;
-  border-bottom: 1px solid var(--rule);
-}
-.talk__venue { margin: 0 0 3px; font-size: var(--text-sm); font-weight: 600; line-height: 1.5; }
-.talk__title { margin: 0; font-size: var(--text-sm); color: var(--muted); font-style: italic; line-height: 1.5; }
-
 /* ---------- Visit ---------- */
 
 .visit { background: var(--sand); padding: 120px 24px; }
@@ -1121,13 +1108,12 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
 }
 
 @media (max-width: 600px) {
-  .intro, .explore, .pi, .newspubs, .team, .talks, .visit, .life, .faq, .facilities, .join { padding-top: 88px; padding-bottom: 88px; }
+  .intro, .explore, .pi, .newspubs, .team, .visit, .life, .faq, .facilities, .join { padding-top: 88px; padding-bottom: 88px; }
   .allpubs { padding-top: 72px; padding-bottom: 88px; }
   .page-head { --head-h: 340px; }
   .subnav__inner { gap: 28px; }
   .section-title { margin-bottom: 48px; }
   .hero__affil { letter-spacing: .2em; line-height: 1.8; }
-  .talk { grid-template-columns: minmax(0, 1fr); gap: 6px; }
   .member { flex-basis: 150px; }
   .intro--summary { padding-top: 48px; padding-bottom: 48px; }
   .directions, .research { padding-top: 56px; padding-bottom: 64px; }
