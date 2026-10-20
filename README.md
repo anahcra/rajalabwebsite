@@ -1,6 +1,6 @@
 # Raja Labs website
 
-Static multi-page site for Raja Labs (Nanoscale Spectroscopy, Molecular Foundry, LBNL). No build step.
+Static multi-page site for Raja Labs (Light, Electrons & Quantum Interfaces; Molecular Foundry, LBNL). No build step.
 
 ```
 index.html          home: hero, intro, news, key publications
