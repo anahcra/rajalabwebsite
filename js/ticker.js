@@ -52,21 +52,14 @@
   const svg = el('svg', { viewBox: '0 0 1440 580', preserveAspectRatio: 'xMidYMid slice' });
   svg.innerHTML = `
     <defs>
-      <path id="tk-q0" d="M -60,250 C 140,268 300,322 455,372"/>
-      <path id="tk-q1" d="M -60,300 C 160,318 320,356 455,372"/>
-      <path id="tk-q2" d="M -60,350 C 180,362 340,378 455,372"/>
+      <path id="tk-q0" d="M -60,262 C 150,278 330,360 455,372"/>
+      <path id="tk-q1" d="M -60,310 C 170,326 345,384 455,372"/>
+      <path id="tk-q2" d="M -60,358 C 190,370 360,402 455,372"/>
       <path id="tk-boat-path" d="M 455,372 C 560,398 1000,366 1580,290"/>
       <radialGradient id="tk-fade-g" cx="455" cy="372" r="420" gradientUnits="userSpaceOnUse">
         <stop offset="0" stop-color="#000"/><stop offset=".07" stop-color="#000"/><stop offset=".2" stop-color="#444"/>
         <stop offset=".4" stop-color="#bbb"/><stop offset=".6" stop-color="#fff"/>
       </radialGradient>
-      <!-- The hillside, traced from the photo a few units inside its edge and stepping round the foot of the
-           near tower, so the questions stay on the rock. -->
-      <clipPath id="tk-hill">
-        <polygon points="-100,209 0,209 40,214 80,219 100,222 120,234 140,245 160,255 180,265 200,274 220,282 240,287
-          260,294 272,298 272,344 358,344 380,350 400,362 420,370 440,378 460,387 480,399 500,412 520,426 540,441
-          560,456 580,471 600,484 620,500 640,514 660,527 680,544 700,561 720,577 740,600 -100,600"/>
-      </clipPath>
       <mask id="tk-fade" maskUnits="userSpaceOnUse" x="-100" y="-100" width="1700" height="800">
         <rect x="-100" y="-100" width="1700" height="800" fill="url(#tk-fade-g)"/>
       </mask>
@@ -109,7 +102,7 @@
       </filter>
     </defs>
     <image href="assets/golden-gate.jpg" x="0" y="0" width="1440" height="580" preserveAspectRatio="xMidYMid slice"/>
-    <g clip-path="url(#tk-hill)"><g class="ticker__questions" mask="url(#tk-fade)" filter="url(#tk-text-shadow)"></g></g>
+    <g class="ticker__questions" mask="url(#tk-fade)" filter="url(#tk-text-shadow)"></g>
     <g class="ticker__fleet"></g>
     <g transform="translate(455,372)">
       <circle class="ticker__glow" r="46" fill="url(#tk-glow)" opacity=".4"/>
