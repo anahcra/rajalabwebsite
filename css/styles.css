@@ -408,10 +408,6 @@ img { display: block; max-width: 100%; }
 .intro--text .intro__inner { text-align: left; }
 .intro--text .intro__lead { font-size: clamp(1.125rem, 1.6vw, 1.25rem); line-height: 1.6; }
 .intro--text .intro__body { max-width: none; margin-top: 20px; font-size: var(--text-sm); }
-/* Research: the summary runs straight into Directions below. */
-.intro--summary { padding-bottom: var(--section-y-tight); }
-.intro--summary .intro__inner { max-width: 820px; text-align: left; }
-.intro--summary .intro__lead { font-size: var(--text); line-height: 1.75; font-weight: 400; }
 .intro__ctas {
   display: flex;
   gap: 14px;
@@ -459,13 +455,17 @@ img { display: block; max-width: 100%; }
 /* ---------- Research ---------- */
 
 .research { padding: var(--section-y-tight) 24px var(--section-y); max-width: 1080px; margin: 0 auto; }
-.research__intro { max-width: 760px; }
 .theme { margin-top: 48px; }
+/* Foundations runs straight into Directions, which closes the page. */
+.research:has(+ .directions) { padding-bottom: var(--section-y-tight); }
+/* Section labels sit above their first theme the same way in both bands. */
+.research > .eyebrow, .directions .eyebrow { margin-bottom: 24px; }
+.research > .eyebrow + .theme { margin-top: 0; }
 .theme__head {
   display: grid;
   grid-template-columns: 88px minmax(0, 1fr);
   gap: 32px;
-  align-items: center;
+  align-items: start;
   margin-bottom: 28px;
 }
 .area__glyph {
@@ -505,6 +505,8 @@ img { display: block; max-width: 100%; }
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 0 48px;
 }
+/* Four findings sit two by two rather than three plus an orphan. */
+.findings:has(> :nth-child(4):last-child) { grid-template-columns: repeat(auto-fill, minmax(max(300px, calc(50% - 24px)), 1fr)); }
 .finding { padding: 22px 0; border-top: 1px solid var(--rule); }
 .finding__title {
   margin: 0 0 8px;
@@ -519,19 +521,18 @@ img { display: block; max-width: 100%; }
 .research__more { margin: 40px 0 0; text-align: center; font-size: var(--text); color: var(--muted); }
 .research__more a { font-weight: 500; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--rule); }
 
-.directions { background: var(--sand); padding: var(--section-y-tight) 24px; }
+.directions { background: var(--sand); padding: var(--section-y-tight) 24px var(--section-y); }
 .directions__inner { max-width: 1032px; margin: 0 auto; }
-.directions .eyebrow { margin-bottom: 8px; }
 .programs {
   list-style: none;
   margin: 32px 0 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  gap: 20px;
 }
 .program {
-  padding: 28px 28px 32px;
+  padding: 24px 28px 26px;
   background: var(--paper);
   border: 1px solid var(--rule);
   border-radius: 6px;
@@ -551,6 +552,11 @@ img { display: block; max-width: 100%; }
 .program__list { margin: 14px 0 0; padding-left: 18px; font-size: var(--text-sm); line-height: 1.65; color: var(--muted); }
 .program__list li + li { margin-top: 8px; }
 .program__list b { font-weight: 600; color: var(--ink); }
+/* LEAP spans the row with its three outputs side by side, so the shorter cards below don't stretch to its height. */
+.program--wide { grid-column: 1 / -1; }
+.program--wide .program__body { max-width: 720px; }
+.program--wide .program__list { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 8px 40px; }
+.program--wide .program__list li + li { margin-top: 0; }
 .program__partners { margin: 14px 0 0; font-size: var(--text-sm); line-height: 1.65; color: var(--muted); }
 
 /* ---------- PI ---------- */
@@ -1192,7 +1198,7 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
   .section-title { margin-bottom: 48px; }
   .hero__affil { letter-spacing: .2em; line-height: 1.8; }
   .member { flex-basis: 150px; }
-  .theme__head { grid-template-columns: 64px minmax(0, 1fr); gap: 20px; align-items: start; }
+  .theme__head { grid-template-columns: 64px minmax(0, 1fr); gap: 20px; }
   .area__glyph { width: 64px; height: 64px; }
   .icon { width: 48px; height: 48px; }
   .theme__title { font-size: 1.125rem; }
