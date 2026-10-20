@@ -548,6 +548,7 @@ img { display: block; max-width: 100%; }
   color: var(--blue);
 }
 .program__sub { margin: 0 0 16px; font-size: var(--text-xs); line-height: 1.5; color: var(--muted); }
+.program__sub a { color: var(--blue); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--rule); }
 .program__body { margin: 0; font-size: var(--text-sm); line-height: 1.7; }
 .program__list { margin: 14px 0 0; padding-left: 18px; font-size: var(--text-sm); line-height: 1.65; color: var(--muted); }
 .program__list li + li { margin-top: 8px; }
