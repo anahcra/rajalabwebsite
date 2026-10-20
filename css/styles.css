@@ -335,12 +335,12 @@ img { display: block; max-width: 100%; }
 .page-head--team .subnav__inner { gap: 56px; }
 .page-head--team .subnav__link { padding: 20px 0 18px; font-size: 1.25rem; }
 
-/* Faded Molecular Foundry photo behind the Visit page title. */
+/* Faded view over Berkeley to the Bay and San Francisco behind the Visit page title. */
 .page-head--visit::before {
   content: '';
   position: absolute;
   inset: var(--nav-h-solid) 0 0;
-  background: url(../assets/molecular-foundry.jpg) center 35% / cover no-repeat;
+  background: url(../assets/visit.jpg) center top / cover no-repeat;
   opacity: .3;
 }
 
