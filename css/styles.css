@@ -610,23 +610,6 @@ img { display: block; max-width: 100%; }
 }
 .news-item p { margin: 0; font-size: var(--text-sm); line-height: 1.55; font-weight: 500; }
 
-/* News page: the home page's news list, full width, with a Paper / Talk / Meeting / People tag under each date. */
-.news { padding: 120px 24px; max-width: 900px; margin: 0 auto; }
-.news .news-item { grid-template-columns: 104px minmax(0, 1fr); gap: 20px; }
-.news .news-item p { font-size: var(--text); }
-.news-item__meta { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
-.news-tag {
-  font-size: .75rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: var(--muted);
-  border: 1px solid var(--rule);
-  padding: 2px 6px;
-}
-.news__more { margin: 48px 0 0; text-align: center; font-size: var(--text); color: var(--muted); }
-.news__more a { font-weight: 500; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--rule); }
-
 .pubs__legend { margin: 0 0 6px; font-size: var(--text-xs); color: var(--muted); }
 .pubs { list-style: none; margin: 0; padding: 0; }
 .pub {
@@ -1138,14 +1121,13 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
 }
 
 @media (max-width: 600px) {
-  .intro, .explore, .pi, .newspubs, .team, .talks, .news, .visit, .life, .faq, .facilities, .join { padding-top: 88px; padding-bottom: 88px; }
+  .intro, .explore, .pi, .newspubs, .team, .talks, .visit, .life, .faq, .facilities, .join { padding-top: 88px; padding-bottom: 88px; }
   .allpubs { padding-top: 72px; padding-bottom: 88px; }
   .page-head { --head-h: 340px; }
   .subnav__inner { gap: 28px; }
   .section-title { margin-bottom: 48px; }
   .hero__affil { letter-spacing: .2em; line-height: 1.8; }
-  .talk, .news .news-item { grid-template-columns: minmax(0, 1fr); gap: 6px; }
-  .news-item__meta { flex-direction: row; align-items: center; gap: 10px; }
+  .talk { grid-template-columns: minmax(0, 1fr); gap: 6px; }
   .member { flex-basis: 150px; }
   .intro--summary { padding-top: 48px; padding-bottom: 48px; }
   .directions, .research { padding-top: 56px; padding-bottom: 64px; }
