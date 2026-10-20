@@ -280,6 +280,24 @@ img { display: block; max-width: 100%; }
 .hero__affil { line-height: 1.5; }
 .hero__affil span { display: block; }
 .hero__affil span + span { margin-top: 4px; }
+/* Scroll cue: a chevron at the foot of the photo that drifts down gently, pointing to the content below. */
+.hero__cue {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px;
+  color: #fff;
+  opacity: .85;
+  filter: drop-shadow(0 1px 6px rgba(0, 0, 0, .45));
+  transition: opacity .2s;
+}
+.hero__cue:hover, .hero__cue:focus-visible { opacity: 1; }
+.hero__cue svg { display: block; animation: hero-cue 2.4s ease-in-out infinite; }
+@keyframes hero-cue {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
 
 /* ---------- Page header (inner pages) ---------- */
 
@@ -1309,4 +1327,5 @@ html:not(.js) .nav { position: absolute; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
+  .hero__cue svg { animation: none; }
 }
