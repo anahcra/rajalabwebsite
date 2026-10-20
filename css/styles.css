@@ -377,14 +377,15 @@ img { display: block; max-width: 100%; }
   opacity: .3;
 }
 
-/* Home page stream (js/stream.js): each following page opens with its header as a shorter banner.
+/* Home page stream (js/stream.js): each following page opens with its own header, shortened, as a banner.
    Scoped to .stream so it outranks the per-page header rules below. */
 .stream .page-head { height: auto; padding: 96px 24px; }
 .stream .page-head::before { inset: 0; }
-.stream .page-head__title a { color: inherit; }
-.stream .page-head__title a:hover { color: var(--gold); }
-.stream .page-head.page-head--fleet { padding: 96px 24px; background: #5b86b5 url(../assets/golden-gate.jpg) 35% 30% / cover no-repeat; }
-.stream .page-head--fleet .page-head__title { text-shadow: 0 2px 14px rgba(0, 20, 45, .75), 0 1px 3px rgba(0, 20, 45, .6); }
+.stream .page-head__title a,
+.stream .page-head__title a:hover { color: inherit; }
+/* Publications keeps its paper-boat ticker, so its banner keeps the full header height. */
+.stream .page-head.page-head--fleet { height: var(--head-h); padding: 0; }
+.stream .fleet__title a { pointer-events: auto; }
 
 /* ---------- Intro ---------- */
 
