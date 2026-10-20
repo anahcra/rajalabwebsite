@@ -3,7 +3,7 @@
 Static multi-page site for Raja Labs (Light, Electrons & Quantum Interfaces; Molecular Foundry, LBNL). No build step.
 
 ```
-index.html          home: hero, intro, news, key publications, Foundry stories
+index.html          home: hero, intro, news, Foundry stories
 research.html       research areas
 facilities.html     stacker + optics labs, Foundry user-proposal access
 about.html          PI bio
