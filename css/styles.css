@@ -377,14 +377,15 @@ img { display: block; max-width: 100%; }
   opacity: .3;
 }
 
-/* Home page stream (js/stream.js): each following page opens with its header as a shorter banner.
+/* Home page stream (js/stream.js): each following page opens with its own header, shortened, as a banner.
    Scoped to .stream so it outranks the per-page header rules below. */
 .stream .page-head { height: auto; padding: 96px 24px; }
 .stream .page-head::before { inset: 0; }
-.stream .page-head__title a { color: inherit; }
-.stream .page-head__title a:hover { color: var(--gold); }
-.stream .page-head.page-head--fleet { padding: 96px 24px; background: #5b86b5 url(../assets/golden-gate.jpg) 35% 30% / cover no-repeat; }
-.stream .page-head--fleet .page-head__title { text-shadow: 0 2px 14px rgba(0, 20, 45, .75), 0 1px 3px rgba(0, 20, 45, .6); }
+.stream .page-head__title a,
+.stream .page-head__title a:hover { color: inherit; }
+/* Publications keeps its paper-boat ticker, so its banner keeps the full header height. */
+.stream .page-head.page-head--fleet { height: var(--head-h); padding: 0; }
+.stream .fleet__title a { pointer-events: auto; }
 
 /* ---------- Intro ---------- */
 
@@ -602,10 +603,11 @@ img { display: block; max-width: 100%; }
   color: var(--blue);
   font-weight: 600;
 }
+.pi__affil .pi__title a { color: inherit; }
+.pi__affil .pi__title a:hover { color: var(--gold-text); }
 .pi__bio { margin: 0 0 20px; font-size: var(--text); line-height: 1.75; }
 .pi__honors { margin: 0 0 32px; font-size: var(--text-sm); line-height: 1.8; color: var(--muted); }
 .pi__honors strong { color: var(--ink); }
-.pi__links { display: flex; gap: 14px; flex-wrap: wrap; }
 .pi__press { margin-top: 56px; text-align: left; }
 .pi__press a { color: var(--ink); }
 .pi__press a:hover { color: var(--gold-text); }
@@ -1158,7 +1160,6 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
   .pi__inner { grid-template-columns: minmax(0, 1fr); gap: 40px; text-align: center; }
   .pi__photo { max-width: 240px; margin: 0 auto; }
   .pi__contact { max-width: 240px; margin-left: auto; margin-right: auto; }
-  .pi__links { justify-content: center; }
   .pi__bio { text-align: left; }
   .visit-map { padding: 20px 16px 16px; }
   .visit-intro__body { padding: 20px 20px 24px; }

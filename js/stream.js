@@ -1,7 +1,7 @@
 // Home page: after the home sections, the other pages follow one after another as the reader scrolls, in
-// nav order. Each page is fetched as it nears the viewport; its <main> sections are appended under a short
-// banner made from its page header. The nav highlights the page being read. Without JavaScript, or if a
-// request fails, the home page simply ends where it does in index.html.
+// nav order. Each page is fetched as it nears the viewport; its <main> sections are appended under its own
+// page header, shortened and without tabs. The nav highlights the page being read. Without JavaScript, or
+// if a request fails, the home page simply ends where it does in index.html.
 (function () {
   const stream = document.getElementById('stream');
   if (!stream || !window.fetch || !window.IntersectionObserver) return;
@@ -13,32 +13,28 @@
   const sentinel = document.createElement('div');
   stream.after(sentinel);
 
-  // The page's header as a banner: same eyebrow, title and background, without the tabs. The title links
-  // to the page itself.
+  // The page's own header as a banner, without the tabs. Its title becomes an h2 linking to the page.
   function banner(doc, url) {
-    const src = doc.querySelector('.page-head');
-    const head = document.createElement('header');
-    head.className = 'page-head';
-    src.classList.forEach((c) => { if (/^page-head--(?!tabs$)/.test(c)) head.classList.add(c); });
-    if (src.querySelector('.join__glow')) {
-      const glow = document.createElement('div');
-      glow.className = 'join__glow';
-      glow.setAttribute('aria-hidden', 'true');
-      head.append(glow);
-    }
-    const inner = document.createElement('div');
-    inner.className = 'page-head__inner';
-    const eyebrow = src.querySelector('.eyebrow');
-    if (eyebrow) inner.append(eyebrow.cloneNode(true));
+    const head = doc.querySelector('.page-head');
+    head.classList.remove('page-head--tabs');
+    head.querySelectorAll('.subnav').forEach((n) => n.remove());
+    const src = head.querySelector('.page-head__title');
     const title = document.createElement('h2');
-    title.className = 'page-head__title';
+    title.className = src.className;
     const link = document.createElement('a');
     link.href = url;
-    link.textContent = src.querySelector('.page-head__title').textContent;
+    link.textContent = src.textContent;
     title.append(link);
-    inner.append(title);
-    head.append(inner);
+    src.replaceWith(title);
     return head;
+  }
+
+  // Scripts a page's header needs: the Publications paper-boat ticker builds itself into #pub-ticker.
+  function run(page) {
+    if (!page.querySelector('#pub-ticker')) return;
+    const script = document.createElement('script');
+    script.src = 'js/ticker.js';
+    document.head.append(script);
   }
 
   function load(url) {
@@ -51,6 +47,7 @@
         page.dataset.nav = NAV[url] || url;
         page.append(banner(doc, url), ...doc.querySelectorAll('main > section'));
         stream.append(page);
+        run(page);
       });
   }
 
