@@ -1143,7 +1143,7 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
   background: radial-gradient(ellipse at 70% 110%, rgba(253, 181, 21, .28), transparent 55%);
 }
 .join__inner { max-width: 1080px; margin: 0 auto; }
-.join__lede { margin: 0 0 72px; max-width: 760px; font-size: clamp(1.125rem, 1.6vw, 1.3125rem); line-height: 1.65; }
+.join__lede { margin: 0 0 72px; font-size: clamp(1.125rem, 1.6vw, 1.3125rem); line-height: 1.65; }
 .join__title {
   margin: 0 0 28px;
   font-family: var(--display);
