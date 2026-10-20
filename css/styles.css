@@ -356,6 +356,15 @@ img { display: block; max-width: 100%; }
   opacity: .3;
 }
 
+/* Faded research imagery behind the Research page title. */
+.page-head--research::before {
+  content: '';
+  position: absolute;
+  inset: var(--nav-h-solid) 0 0;
+  background: url(../assets/research.jpg) center / cover no-repeat;
+  opacity: .3;
+}
+
 /* ---------- Intro ---------- */
 
 .intro { padding: 120px 24px; display: flex; justify-content: center; }
