@@ -630,14 +630,16 @@ img { display: block; max-width: 100%; }
 /* ---------- In the News (Molecular Foundry stories) ---------- */
 
 .press { background: var(--sand); padding: 88px 24px; }
-.press__inner { max-width: 1180px; margin: 0 auto; }
+/* Same content width as News + Key Publications above, so the edges line up. */
+.press__inner { max-width: 1132px; margin: 0 auto; }
 .press .list-head { margin-bottom: 24px; }
+/* Four across, then two, so the eight stories always fill whole rows. */
 .press__grid {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
 }
 .press__card {
@@ -651,9 +653,10 @@ img { display: block; max-width: 100%; }
   transition: border-color .25s;
 }
 .press__card:hover { border-color: var(--gold); }
-.press__img { width: 100%; aspect-ratio: 268 / 140; object-fit: cover; object-position: top; background: #fff; }
+/* Foundry's own thumbnail ratio; their figures put the subject at the top. */
+.press__img { width: 100%; aspect-ratio: 268 / 140; object-fit: cover; object-position: top; background: #fff; border-bottom: 1px solid var(--rule); }
 .press__title {
-  padding: 18px 20px 0;
+  padding: 16px 18px 0;
   font-size: var(--text-sm);
   line-height: 1.45;
   font-weight: 600;
@@ -662,8 +665,7 @@ img { display: block; max-width: 100%; }
 .press__card:hover .press__title { color: var(--gold-text); }
 .press__date {
   margin-top: auto;
-  padding: 20px 20px 18px;
-  text-align: right;
+  padding: 14px 18px 16px;
   font-size: var(--label);
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -1140,6 +1142,7 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
 
 @media (max-width: 860px) {
   .newspubs { grid-template-columns: minmax(0, 1fr); gap: 64px; }
+  .press__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pi__inner { grid-template-columns: minmax(0, 1fr); gap: 40px; text-align: center; }
   .pi__photo { max-width: 240px; margin: 0 auto; }
   .pi__contact { max-width: 240px; margin-left: auto; margin-right: auto; }
@@ -1169,6 +1172,18 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
   .area__glyph { width: 64px; height: 64px; }
   .icon { width: 48px; height: 48px; }
   .theme__title { font-size: 1.125rem; }
+  /* Phones: one compact row per story, thumbnail beside the title, instead of eight full-width cards. */
+  .press__grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .press__card {
+    display: grid;
+    grid-template-columns: 112px minmax(0, 1fr);
+    grid-template-rows: 1fr auto;
+    column-gap: 14px;
+  }
+  .press__img { grid-row: 1 / 3; height: 100%; aspect-ratio: auto; border-bottom: 0; border-right: 1px solid var(--rule); }
+  .press__card:not(:has(.press__img)) { grid-template-columns: minmax(0, 1fr); padding-left: 14px; }
+  .press__title { grid-column: -2; padding: 12px 14px 0 0; }
+  .press__date { grid-column: -2; padding: 8px 14px 12px 0; }
 }
 
 /* Without JavaScript: nav sits over the hero and scrolls away; links wrap instead of a menu button. */
