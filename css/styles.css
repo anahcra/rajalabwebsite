@@ -221,6 +221,7 @@ img { display: block; max-width: 100%; }
   position: relative;
   height: 92vh;
   min-height: 520px;
+  padding-top: var(--nav-h); /* the transparent nav overlays the photo, so centre the text in the area below it */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -275,9 +276,10 @@ img { display: block; max-width: 100%; }
   opacity: .95;
   text-shadow: 0 1px 8px rgba(0, 0, 0, .5);
 }
-/* Names don't break inside on narrow screens; each separator stays with the name before it, evenly spaced. */
-.hero__affil span:not(:last-child) { white-space: nowrap; }
-.hero__affil span:not(:last-child)::after { content: "·"; margin: 0 .3em 0 .7em; }
+/* One role per line under the name. */
+.hero__affil { line-height: 1.5; }
+.hero__affil span { display: block; }
+.hero__affil span + span { margin-top: 4px; }
 
 /* ---------- Page header (inner pages) ---------- */
 
@@ -1261,12 +1263,9 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
   .page-head--tabs .subnav__inner { gap: 28px; }
   .page-head--tabs .subnav__link { font-size: 1.125rem; }
   .section-title { margin-bottom: 48px; }
-  .hero__affil { letter-spacing: .12em; padding-left: .12em; line-height: 1.5; }
-  /* Phones: one affiliation per line rather than separators stranded at line ends; the gap between names
-     is larger than the line spacing, so a name that wraps still reads as one item. */
-  .hero__affil span { display: block; }
+  .hero__affil { letter-spacing: .12em; padding-left: .12em; }
+  /* Phones: the gap between roles is larger than the line spacing, so a role that wraps still reads as one item. */
   .hero__affil span + span { margin-top: 6px; }
-  .hero__affil span::after { display: none; }
   .member { flex-basis: 150px; }
   .theme__head { grid-template-columns: 64px minmax(0, 1fr); gap: 20px; }
   .area__glyph { width: 64px; height: 64px; }
