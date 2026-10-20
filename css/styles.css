@@ -425,9 +425,20 @@ img { display: block; max-width: 100%; }
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 16px;
+}
+.explore__grid > li { flex: 0 1 calc(25% - 12px); }
+@media (max-width: 1000px) {
+  .explore__grid > li { flex-basis: calc(33.333% - 11px); }
+}
+@media (max-width: 760px) {
+  .explore__grid > li { flex-basis: calc(50% - 8px); }
+}
+@media (max-width: 540px) {
+  .explore__grid > li { flex-basis: 100%; }
 }
 .explore__card {
   display: flex;
