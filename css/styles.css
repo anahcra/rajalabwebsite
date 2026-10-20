@@ -341,7 +341,7 @@ img { display: block; max-width: 100%; }
 .subnav__link:hover { color: #fff; }
 .subnav__link.is-active { color: var(--gold); }
 .subnav__link.is-active::after { width: 100%; }
-/* Grouped pages (People: PI / Team; Join Us: Join Us / Lab Life / FAQ): larger tabs, with the title centered
+/* Grouped pages (People: PI / Team; Join: Join / Lab Life / FAQ): larger tabs, with the title centered
    in the space between the nav and the tabs. */
 .page-head--tabs { display: flex; flex-direction: column; padding: var(--nav-h-solid) 0 0; }
 .page-head--tabs .page-head__inner { width: 100%; margin: auto; padding: 0 24px; }
@@ -1128,7 +1128,7 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
 /* ---------- Join ---------- */
 
 .join { padding: var(--section-y) 24px; text-align: center; }
-/* Faded photos of deer, goats and turkeys behind the Join Us, Lab Life and FAQ page titles. */
+/* Faded photos of deer, goats and turkeys behind the Join, Lab Life and FAQ page titles. */
 .page-head--join::before {
   content: '';
   position: absolute;
@@ -1136,7 +1136,7 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
   background: url(../assets/join.jpg) center / cover no-repeat;
   opacity: .3;
 }
-/* Warm glow in the corner of the Join Us, Lab Life and FAQ page headers. */
+/* Warm glow in the corner of the Join, Lab Life and FAQ page headers. */
 .join__glow {
   position: absolute;
   inset: 0;
