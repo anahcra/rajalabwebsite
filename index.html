@@ -31,6 +31,7 @@
   <script>document.documentElement.classList.add('js')</script>
   <script src="js/main.js" defer></script>
   <script src="js/news.js" defer></script>
+  <script src="js/stream.js" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -204,6 +205,9 @@
         </ul>
       </div>
     </section>
+
+    <!-- EVERY OTHER PAGE, in nav order: js/stream.js appends each one's sections as the reader scrolls down. -->
+    <div class="stream" id="stream" data-pages="about.html team.html research.html publications.html facilities.html join.html lab-life.html faq.html visit.html"></div>
   </main>
 
   <footer class="footer">
