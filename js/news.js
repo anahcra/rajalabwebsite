@@ -1,4 +1,4 @@
-// Home "In the News": refresh the cards from the Molecular Foundry's stories tagged Archana Raja
+// Home "Featured Stories": refresh the cards from the Molecular Foundry's stories tagged Archana Raja
 // (foundry.lbl.gov/tag/archana-raja, tag 189) through its WordPress API. The cards written into
 // index.html stay as they are if the request fails or JavaScript is off.
 (function () {
