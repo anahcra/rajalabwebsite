@@ -608,11 +608,11 @@ img { display: block; max-width: 100%; }
 .pi__bio { margin: 0 0 20px; font-size: var(--text); line-height: 1.75; }
 .pi__honors { margin: 0 0 32px; font-size: var(--text-sm); line-height: 1.8; color: var(--muted); }
 .pi__honors strong { color: var(--ink); }
-/* Full-width strip under the photo and bio: three stories side by side. */
+/* Full-width strip under the photo and bio: stories side by side. */
 .pi__press { grid-column: 1 / -1; text-align: left; }
 .pi__press .list-head { padding-bottom: 8px; border-bottom-width: 1px; }
 .pi__press .list-head__title { font-size: 1rem; }
-.pi__press-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+.pi__press-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 64px; }
 .pi__press .news-item { display: block; padding: 14px 0 0; border-bottom: 0; }
 .pi__press .date { display: block; margin-bottom: 6px; }
 .pi__press a { color: var(--ink); }
@@ -942,6 +942,10 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
 }
 .access__text { margin: 0; max-width: 620px; font-size: var(--text); line-height: 1.75; color: rgba(255, 255, 255, .94); }
 .access__text strong { color: #fff; font-weight: 600; }
+.access__read { margin: 18px 0 0; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, .2); max-width: 620px; font-size: var(--text-xs); line-height: 1.6; color: rgba(255, 255, 255, .8); }
+.access__read-label { display: block; margin-bottom: 4px; font-size: var(--label); letter-spacing: .2em; text-transform: uppercase; font-weight: 600; color: var(--gold); }
+.access__read a { color: #fff; font-weight: 600; }
+.access__read a:hover { color: var(--gold); }
 .access__btns { display: flex; flex-direction: column; gap: 12px; }
 .access__btns .btn { text-align: center; }
 .btn--ghost { padding: 14px 28px; color: var(--gold); border-color: transparent; }
