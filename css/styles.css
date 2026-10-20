@@ -406,8 +406,10 @@ img { display: block; max-width: 100%; }
   color: var(--muted);
 }
 .intro--text .intro__inner { text-align: left; }
-.intro--text .intro__lead { font-size: clamp(1.125rem, 1.6vw, 1.25rem); line-height: 1.6; }
-.intro--text .intro__body { max-width: none; margin-top: 20px; font-size: var(--text-sm); }
+/* Home blurb: every paragraph set alike, at the lead's size and in bold. */
+.intro--text .intro__lead,
+.intro--text .intro__body { font-size: clamp(1.125rem, 1.6vw, 1.25rem); line-height: 1.6; font-weight: 600; color: var(--ink); }
+.intro--text .intro__body { max-width: none; margin-top: 20px; }
 .intro__ctas {
   display: flex;
   gap: 14px;
