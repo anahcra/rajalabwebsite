@@ -10,7 +10,6 @@ about.html          PI bio
 publications.html   paper-boat header + all publications
 team.html           group members and alumni
 lab-life.html       what working in the lab is like
-talks.html          invited talks
 visit.html          getting to the Molecular Foundry
 faq.html            joining, user access, visiting (<details> accordions)
 join.html           openings / contact
