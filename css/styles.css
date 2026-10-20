@@ -248,8 +248,10 @@ img { display: block; max-width: 100%; }
   font-family: var(--display);
   font-weight: 800;
   font-size: clamp(1.75rem, 4vw, 3.375rem);
-  line-height: 1.1;
-  letter-spacing: -.02em;
+  line-height: 1.12;
+  letter-spacing: -.005em;
+  word-spacing: .04em;
+  font-kerning: normal;
   text-wrap: balance;
   text-shadow: 0 2px 24px rgba(0, 0, 0, .35);
 }
@@ -258,18 +260,24 @@ img { display: block; max-width: 100%; }
   font-family: var(--display);
   font-weight: 700;
   font-size: clamp(.9375rem, 1.3vw, 1.125rem);
-  letter-spacing: .14em;
+  letter-spacing: .16em;
+  padding-left: .16em; /* balances the tracking after the last letter so the line centres optically */
   text-transform: uppercase;
   text-shadow: 0 1px 12px rgba(0, 0, 0, .4);
 }
 .hero__affil {
   margin: 14px 0 0;
   font-size: var(--text-xs);
-  letter-spacing: .22em;
+  font-weight: 500;
+  letter-spacing: .14em;
+  padding-left: .14em; /* balances the tracking after the last letter */
   text-transform: uppercase;
   opacity: .95;
   text-shadow: 0 1px 8px rgba(0, 0, 0, .5);
 }
+/* Names don't break inside on narrow screens; each separator stays with the name before it, evenly spaced. */
+.hero__affil span:not(:last-child) { white-space: nowrap; }
+.hero__affil span:not(:last-child)::after { content: "·"; margin: 0 .3em 0 .7em; }
 
 /* ---------- Page header (inner pages) ---------- */
 
@@ -1210,7 +1218,12 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
   .page-head--tabs .subnav__inner { gap: 28px; }
   .page-head--tabs .subnav__link { font-size: 1.125rem; }
   .section-title { margin-bottom: 48px; }
-  .hero__affil { letter-spacing: .2em; line-height: 1.8; }
+  .hero__affil { letter-spacing: .12em; padding-left: .12em; line-height: 1.5; }
+  /* Phones: one affiliation per line rather than separators stranded at line ends; the gap between names
+     is larger than the line spacing, so a name that wraps still reads as one item. */
+  .hero__affil span { display: block; }
+  .hero__affil span + span { margin-top: 6px; }
+  .hero__affil span::after { display: none; }
   .member { flex-basis: 150px; }
   .theme__head { grid-template-columns: 64px minmax(0, 1fr); gap: 20px; }
   .area__glyph { width: 64px; height: 64px; }
