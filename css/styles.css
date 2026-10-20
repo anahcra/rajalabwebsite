@@ -588,6 +588,14 @@ img { display: block; max-width: 100%; }
   text-transform: uppercase;
   line-height: 1.1;
 }
+.pi__cv {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: var(--label);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
 .pi__affil {
   margin: 24px 0 0;
   font-size: var(--text-sm);
@@ -604,9 +612,6 @@ img { display: block; max-width: 100%; }
   font-weight: 600;
 }
 .pi__bio { margin: 0 0 20px; font-size: var(--text); line-height: 1.75; }
-.pi__honors { margin: 0 0 32px; font-size: var(--text-sm); line-height: 1.8; color: var(--muted); }
-.pi__honors strong { color: var(--ink); }
-.pi__links { display: flex; gap: 14px; flex-wrap: wrap; }
 .pi__press { margin-top: 56px; text-align: left; }
 .pi__press a { color: var(--ink); }
 .pi__press a:hover { color: var(--gold-text); }
@@ -1159,7 +1164,6 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
   .pi__inner { grid-template-columns: minmax(0, 1fr); gap: 40px; text-align: center; }
   .pi__photo { max-width: 240px; margin: 0 auto; }
   .pi__contact { max-width: 240px; margin-left: auto; margin-right: auto; }
-  .pi__links { justify-content: center; }
   .pi__bio { text-align: left; }
   .visit-map { padding: 20px 16px 16px; }
   .visit-intro__body { padding: 20px 20px 24px; }
