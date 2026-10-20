@@ -627,6 +627,50 @@ img { display: block; max-width: 100%; }
 .pub p { margin: 0; font-size: var(--text-sm); line-height: 1.6; color: var(--muted); }
 .pub strong { color: var(--ink); }
 
+/* ---------- In the News (Molecular Foundry stories) ---------- */
+
+.press { background: var(--sand); padding: 88px 24px; }
+.press__inner { max-width: 1180px; margin: 0 auto; }
+.press .list-head { margin-bottom: 24px; }
+.press__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+.press__card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: border-color .25s;
+}
+.press__card:hover { border-color: var(--gold); }
+.press__img { width: 100%; aspect-ratio: 268 / 140; object-fit: cover; object-position: top; background: #fff; }
+.press__title {
+  padding: 18px 20px 0;
+  font-size: var(--text-sm);
+  line-height: 1.45;
+  font-weight: 600;
+  color: var(--blue);
+}
+.press__card:hover .press__title { color: var(--gold-text); }
+.press__date {
+  margin-top: auto;
+  padding: 20px 20px 18px;
+  text-align: right;
+  font-size: var(--label);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gold-text);
+  font-weight: 600;
+}
+
 /* ---------- Publications ticker ---------- */
 
 .page-head.page-head--fleet { padding: var(--nav-h-solid) 0 0; }
@@ -1112,7 +1156,7 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
 }
 
 @media (max-width: 600px) {
-  .intro, .explore, .pi, .newspubs, .team, .visit, .life, .faq, .facilities, .join { padding-top: 88px; padding-bottom: 88px; }
+  .intro, .explore, .pi, .newspubs, .press, .team, .visit, .life, .faq, .facilities, .join { padding-top: 88px; padding-bottom: 88px; }
   .allpubs { padding-top: 72px; padding-bottom: 88px; }
   .page-head { --head-h: 340px; }
   .subnav__inner { gap: 28px; }

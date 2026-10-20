@@ -3,7 +3,7 @@
 Static multi-page site for Raja Labs (Light, Electrons & Quantum Interfaces; Molecular Foundry, LBNL). No build step.
 
 ```
-index.html          home: hero, intro, news, key publications
+index.html          home: hero, intro, news, key publications, Foundry stories
 research.html       research areas
 facilities.html     stacker + optics labs, Foundry user-proposal access
 about.html          PI bio
@@ -16,7 +16,8 @@ join.html           openings / contact
 css/styles.css      styles + responsive breakpoints
 js/main.js          nav behaviour (transparent → solid on scroll, mobile menu)
 js/ticker.js        animated paper-boat header (publications.html)
-assets/             images, favicon, CV
+js/news.js          home "In the News": latest Foundry stories from foundry.lbl.gov (falls back to the cards in index.html)
+assets/             images, favicon, CV; assets/news/ holds the fallback Foundry story images
 sitemap.xml         page list for search engines (update <lastmod> when pages change)
 robots.txt          points crawlers at the sitemap
 ```

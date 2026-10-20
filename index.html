@@ -30,6 +30,7 @@
   <link rel="stylesheet" href="css/styles.css">
   <script>document.documentElement.classList.add('js')</script>
   <script src="js/main.js" defer></script>
+  <script src="js/news.js" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -131,6 +132,7 @@
         <div>
           <div class="list-head">
             <h2 class="list-head__title">News</h2>
+            <a href="https://foundry.lbl.gov/tag/archana-raja/" class="list-head__meta">Foundry stories →</a>
           </div>
           <div class="news-item">
             <span class="date">Oct 2026</span>
@@ -179,6 +181,26 @@
             </li>
           </ol>
         </div>
+      </div>
+    </section>
+    <!-- IN THE NEWS: Molecular Foundry stories tagged Archana Raja (foundry.lbl.gov/tag/archana-raja).
+         js/news.js swaps in the latest from Foundry's site; these cards are the fallback. -->
+    <section class="press" id="press">
+      <div class="press__inner">
+        <div class="list-head">
+          <h2 class="list-head__title">In the News</h2>
+          <a href="https://foundry.lbl.gov/tag/archana-raja/" class="list-head__meta">All stories on foundry.lbl.gov →</a>
+        </div>
+        <ul class="press__grid">
+          <li><a class="press__card" href="https://foundry.lbl.gov/2026/08/07/ferroelectricity-emerges-at-the-nanoscale/"><img class="press__img" src="assets/news/ferroelectric-tio2.jpg" alt="" loading="lazy"><span class="press__title">Ferroelectricity Emerges at the Nanoscale</span><time class="press__date" datetime="2026-08">August 2026</time></a></li>
+          <li><a class="press__card" href="https://foundry.lbl.gov/2025/09/11/separating-an-electron-into-waves-of-spin-and-charge/"><img class="press__img" src="assets/news/spin-charge.jpg" alt="" loading="lazy"><span class="press__title">Separating an Electron into Waves of Spin and Charge</span><time class="press__date" datetime="2025-09">September 2025</time></a></li>
+          <li><a class="press__card" href="https://foundry.lbl.gov/2025/02/13/a-new-approach-to-efficient-optoelectronics-inspired-by-the-human-eye/"><img class="press__img" src="assets/news/optoelectronics.jpg" alt="" loading="lazy"><span class="press__title">A New Approach to Efficient Optoelectronics, Inspired by the Human Eye</span><time class="press__date" datetime="2025-02">February 2025</time></a></li>
+          <li><a class="press__card" href="https://foundry.lbl.gov/2023/11/10/foundrys-raja-and-safety-team-honored-with-berkeley-lab-directors-awards/"><img class="press__img" src="assets/news/directors-award.jpg" alt="" loading="lazy"><span class="press__title">Foundry’s Raja and Safety Team Honored with Berkeley Lab Director’s Awards</span><time class="press__date" datetime="2023-11">November 2023</time></a></li>
+          <li><a class="press__card" href="https://foundry.lbl.gov/2023/02/07/microscopy-images-could-lead-to-new-ways-to-control-excitons-for-quantum-computing/"><img class="press__img" src="assets/news/moire-excitons.jpg" alt="" loading="lazy"><span class="press__title">Microscopy Images Could Lead to New Ways to Control Excitons for Quantum Computing</span><time class="press__date" datetime="2023-02">February 2023</time></a></li>
+          <li><a class="press__card" href="https://foundry.lbl.gov/2023/01/21/hyperspectral-imaging-of-exciton-confinement-within-a-moire-unit-cell-with-a-subnanometer-electron-probe/"><img class="press__img" src="assets/news/hyperspectral-imaging.jpg" alt="" loading="lazy"><span class="press__title">Hyperspectral imaging of exciton confinement within a moiré unit cell with a subnanometer electron probe</span><time class="press__date" datetime="2023-01">January 2023</time></a></li>
+          <li><a class="press__card" href="https://foundry.lbl.gov/2023/01/17/its-your-lab-foundry-staff-describe-how-national-user-facilities-democratize-access-to-science/"><img class="press__img" src="assets/news/its-your-lab.jpg" alt="" loading="lazy"><span class="press__title">It’s Your Lab: Foundry Staff Describe How National User Facilities Democratize Access to Science</span><time class="press__date" datetime="2023-01">January 2023</time></a></li>
+          <li><a class="press__card" href="https://foundry.lbl.gov/2023/01/06/ultrafast-charge-and-energy-transport-across-two-dimensional-atomic-junctions/"><img class="press__img" src="assets/news/atomic-junctions.jpg" alt="" loading="lazy"><span class="press__title">Ultrafast charge and energy transport across two-dimensional atomic junctions</span><time class="press__date" datetime="2023-01">January 2023</time></a></li>
+        </ul>
       </div>
     </section>
   </main>
