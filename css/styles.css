@@ -1056,6 +1056,14 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
 /* ---------- Join ---------- */
 
 .join { padding: 120px 24px; text-align: center; }
+/* Faded photos of deer, goats and turkeys behind the Join Us page title. */
+.page-head--join::before {
+  content: '';
+  position: absolute;
+  inset: var(--nav-h-solid) 0 0;
+  background: url(../assets/join.jpg) center / cover no-repeat;
+  opacity: .3;
+}
 /* Warm glow in the corner of the Join Us page header. */
 .join__glow {
   position: absolute;
