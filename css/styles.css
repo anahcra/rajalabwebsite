@@ -1031,7 +1031,7 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
   background: var(--gold);
 }
 
-/* Instrument card: stacker card, plus a model line and a ruled-off subsection for an add-on. */
+/* Instrument card: stacker card, plus a model line and ruled-off subsections. */
 .instrument__model { margin: -8px 0 20px; font-size: var(--text-sm); font-weight: 600; color: var(--gold-text); }
 .instrument__text { margin: 0 0 20px; max-width: 760px; font-size: var(--text); line-height: 1.75; }
 .instrument__sub { margin-top: 36px; padding-top: 32px; border-top: 1px solid var(--rule); }

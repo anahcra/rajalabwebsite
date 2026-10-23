@@ -5,7 +5,7 @@ Static multi-page site for Raja Labs (Light, Electrons & Quantum Interfaces; Mol
 ```
 index.html          home: hero, intro, lab updates, featured Foundry stories, then every other page (js/stream.js)
 research.html       research areas
-facilities.html     optics labs, attoDRY2100 magneto-optical microscope + strain cell, stackers, Foundry user-proposal access
+facilities.html     optics labs, Montana s100 and attoDRY2100 (+ strain cell) microscopes, stackers, Foundry user-proposal access
 about.html          PI bio
 publications.html   paper-boat header + all publications
 team.html           group members and alumni
