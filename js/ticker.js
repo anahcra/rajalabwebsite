@@ -48,15 +48,24 @@
     return n;
   }
 
-  // Boats cast their shadows onto the water toward the viewer, like the bridge deck's: the silhouette
-  // flipped about the waterline, flattened by SH_K and leaning right (away from the upper-left light).
-  // Like the deck's shadow it breaks up on the chop, into SH_N bands that sway sideways out of step,
-  // more and with wider gaps between them the further they fall from the hull.
-  const BOAT_H = 36, BOAT_S = 50, SH_K = .48, SH_SKEW = .3, SH_N = 8;
-  const SH_DEPTH = (BOAT_H + BOAT_S) * SH_K;
+  // The sun is off to the right: in the photo the far tower's shadow runs level and to the left from its
+  // base, about 1.3 times the tower's height, and the deck's shadow meets it a third of the way along.
+  // So a boat's shadow lies on the water beside its waterline: each point slides left by SH_K times its
+  // height and a little away from the viewer (SH_LIFT), so it trails behind the hull with the sail's
+  // shadow furthest out. Like the deck's shadow it breaks up on the chop, into SH_N bands that sway
+  // sideways out of step, more and with wider gaps between them the further they fall from the hull.
+  const BOAT_H = 36, BOAT_S = 50, SH_K = 1.3, SH_LIFT = .3, SH_N = 6;
+  const SH_DEPTH = (BOAT_H + BOAT_S) * SH_LIFT;
   const SH_BANDS = Array.from({ length: SH_N }, (_, i) => {
     const y0 = SH_DEPTH * i / SH_N, y1 = SH_DEPTH * (i + 1) / SH_N;
-    return [y0, y1 - (i ? .3 + .15 * i : 0)];
+    return [y0, y1 - (i ? (y1 - y0) * (.1 + .08 * i) : 0)];
+  });
+  // The darker water hugging the hull ripples the same way: CT_N strips from just above the waterline
+  // down to CT_DEPTH below it, swaying more and parting further the further they are from the hull.
+  const CT_TOP = -3, CT_DEPTH = 14, CT_N = 4;
+  const CT_BANDS = Array.from({ length: CT_N }, (_, i) => {
+    const y0 = CT_TOP + (CT_DEPTH - CT_TOP) * i / CT_N, y1 = CT_TOP + (CT_DEPTH - CT_TOP) * (i + 1) / CT_N;
+    return [y0, y1 - (i ? (y1 - y0) * (.2 + .12 * i) : 0)];
   });
 
   /* ---------- scene ---------- */
@@ -89,8 +98,9 @@
         <feComposite in2="drop" operator="in" result="shadow"/>
         <feMerge><feMergeNode in="shadow"/><feMergeNode in="sheet"/></feMerge>
       </filter>
-      <!-- Boat lighting from the upper left: a lit hull darkening to the waterline, ends turning
-           away from the light, the shaded inside of the far wall, a bright sail face and a shaded one. -->
+      <!-- Boat lighting from the upper right, where the sun is: a lit hull darkening to the waterline,
+           ends turning away from the light, the shaded inside of the far wall, a bright sail face on the
+           right and a shaded one on the left. -->
       <linearGradient id="tk-hull" x1="0" y1="0" x2="0" y2="1">
         <stop offset="0" stop-color="#FFFCF6"/><stop offset=".5" stop-color="${PAPER}"/>
         <stop offset="1" stop-color="#D3BE9C"/>
@@ -102,17 +112,22 @@
       <linearGradient id="tk-far-wall" x1="0" y1="0" x2="0" y2="1">
         <stop offset="0" stop-color="${FOLD}"/><stop offset="1" stop-color="#BBA27C"/>
       </linearGradient>
-      <linearGradient id="tk-sail-lit" x1="0" y1="1" x2="1" y2="0">
+      <linearGradient id="tk-sail-lit" x1="1" y1="1" x2="0" y2="0">
         <stop offset="0" stop-color="${PAPER}"/><stop offset="1" stop-color="#FFFDF9"/>
       </linearGradient>
-      <linearGradient id="tk-sail-shade" x1="0" y1="0" x2="1" y2="1">
+      <linearGradient id="tk-sail-shade" x1="1" y1="0" x2="0" y2="1">
         <stop offset="0" stop-color="${FOLD}"/><stop offset="1" stop-color="#CDB590"/>
       </linearGradient>
       <!-- Cast shadow on the water: blurred more across than down, so its strips read as streaks. -->
       <filter id="tk-water-shadow" x="-10%" y="-20%" width="120%" height="140%">
         <feGaussianBlur stdDeviation="1.8 .6"/>
       </filter>
-      ${SH_BANDS.map(([y0, y1], i) => `<clipPath id="tk-sh-${i}"><rect x="-4000" y="${y0.toFixed(1)}" width="8000" height="${(y1 - y0).toFixed(1)}"/></clipPath>`).join('')}
+      <!-- Contact shadow: the darker water hugging the hull where it sits in the bay. -->
+      <filter id="tk-contact" x="-20%" y="-150%" width="140%" height="400%">
+        <feGaussianBlur stdDeviation="5 1.2"/>
+      </filter>
+      ${SH_BANDS.map(([y0, y1], i) => `<clipPath id="tk-sh-${i}"><rect x="-4000" y="${(-y1).toFixed(2)}" width="8000" height="${(y1 - y0).toFixed(2)}"/></clipPath>`).join('')}
+      ${CT_BANDS.map(([y0, y1], i) => `<clipPath id="tk-ct-${i}"><rect x="-4000" y="${y0.toFixed(2)}" width="8000" height="${(y1 - y0).toFixed(2)}"/></clipPath>`).join('')}
       <filter id="tk-text-shadow" x="-5%" y="-30%" width="110%" height="160%">
         <feDropShadow dx="0" dy="1" stdDeviation="1.3" flood-color="#000" flood-opacity=".6"/>
       </filter>
@@ -260,15 +275,15 @@
     const inner = hullD(-9, [[w * .8, 2], [w * .2, 2]]);
     const peak = softPoly([[w * .34, 0], [w * .5, -S, 6], [w * .66, 0]], 8);
     const apex = -S + 3 * S / Math.hypot(w * .16, S); // where the rounded tip crosses the centre crease
-    const shade = softPoly([[w * .5, apex, 0], [w * .66, 0], [w * .5, 0, 0]], 8);
+    const shade = softPoly([[w * .5, apex, 0], [w * .5, 0, 0], [w * .34, 0]], 8);
     const face = (d, fill, news, extra = '') =>
       `<path d="${d}" fill="${fill}"${extra}/><path d="${d}" fill="url(#${news})" opacity=".5"/>`;
     const g = el('a', { href: '#' + paper.id, tabindex: '-1' });
     g.innerHTML = `
       <g transform="translate(${-w / 2},${-h * .55})"><g filter="url(#tk-paper)" opacity=".88">
         ${face(inner, 'url(#tk-far-wall)', 'tk-news-l')}
-        ${face(peak, 'url(#tk-sail-lit)', 'tk-news-l', ` stroke="${edge}" stroke-width=".8"`)}
-        ${face(shade, 'url(#tk-sail-shade)', 'tk-news-r')}
+        ${face(peak, 'url(#tk-sail-lit)', 'tk-news-r', ` stroke="${edge}" stroke-width=".8"`)}
+        ${face(shade, 'url(#tk-sail-shade)', 'tk-news-l')}
         <path d="M ${w * .5},${apex.toFixed(1)} L ${w * .5},0" stroke="${INK}" stroke-opacity=".22" stroke-width=".8"/>
         ${face(front, 'url(#tk-hull)', 'tk-news', ` stroke="${edge}" stroke-width=".9"`)}
         <path d="${front}" fill="url(#tk-hull-ends)"/>
@@ -276,15 +291,21 @@
         <text x="${w / 2}" y="${base}" text-anchor="middle" font-weight="700" font-size="${FS - 1}" letter-spacing="1.6" fill="${BLUE}">${paper.label}</text>
       </g>`;
     // Shadow: the hull, far wall and sail outlines mapped so the waterline (y = h) lands on y = 0
-    // and height above it becomes depth below it; one copy per band, each clipped to its band.
+    // and height above it becomes distance to the left and a little up the water; one copy per band,
+    // each clipped to its band. Under it, a soft dark band along the waterline seats the hull in the water,
+    // likewise cut into strips.
     const sil = [front, inner, peak].map((d) => `<path d="${d}"/>`).join('');
     const sh = el('g', {});
-    sh.innerHTML = `<g transform="translate(${-w / 2},0)" fill="#06203a" filter="url(#tk-water-shadow)">${SH_BANDS.map((_, i) =>
-      `<g clip-path="url(#tk-sh-${i})" opacity="${(.58 - .04 * i).toFixed(3)}"><g>
-         <g transform="matrix(1,0,${-SH_SKEW},${-SH_K},${SH_SKEW * h},${SH_K * h})">${sil}</g>
+    const contact = `<ellipse cx="0" cy="2" rx="${(w / 2 - B + 12).toFixed(1)}" ry="6" filter="url(#tk-contact)"/>`;
+    sh.innerHTML = `<g class="ticker__contact" fill="#041a30" opacity=".8" filter="url(#tk-water-shadow)">${CT_BANDS.map((_, i) =>
+      `<g clip-path="url(#tk-ct-${i})"><g>${contact}</g></g>`).join('')}</g>
+      <g transform="translate(${-w / 2},0)" fill="#06203a" filter="url(#tk-water-shadow)">${SH_BANDS.map((_, i) =>
+      `<g clip-path="url(#tk-sh-${i})" opacity="${(.72 - .06 * i).toFixed(3)}"><g>
+         <g transform="matrix(1,0,${SH_K},${SH_LIFT},${-SH_K * h},${-SH_LIFT * h})">${sil}</g>
        </g></g>`).join('')}</g>`;
-    const bands = [...sh.querySelectorAll('[clip-path] > g')];
-    return { g, w, sh, bands };
+    const ripples = [...sh.querySelectorAll('.ticker__contact > [clip-path] > g')];
+    const bands = [...sh.querySelectorAll('[clip-path] > g')].filter((b) => !ripples.includes(b));
+    return { g, w, sh, bands, ripples };
   }
   const SPEED = 34, GAP = 240, EMERGE = 210; // papers grow out of the wavefront over the first 210px
   const route = svg.querySelector('#tk-boat-path'), len = route.getTotalLength();
@@ -306,6 +327,10 @@
     it.sh.setAttribute('opacity', op);
     it.bands.forEach((b, i) => {
       const dx = (.6 + 1.1 * i) * Math.sin(t * 2.3 - i * 1.1 + it.phase) + .6 * i * Math.sin(t * 3.7 + i * 2.3);
+      b.setAttribute('transform', `translate(${dx.toFixed(2)},0)`);
+    });
+    it.ripples.forEach((b, i) => {
+      const dx = (1.5 + 2.5 * i) * Math.sin(t * 2.1 - i * 1.3 + it.phase) + 1.2 * i * Math.sin(t * 3.3 + i * 1.9);
       b.setAttribute('transform', `translate(${dx.toFixed(2)},0)`);
     });
   }
