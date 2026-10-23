@@ -433,8 +433,8 @@ img { display: block; max-width: 100%; }
   line-height: 1.75;
   color: var(--muted);
 }
-/* Home blurb spans the same width as the Explore honeycomb below it. */
-.intro--text .intro__inner { max-width: 960px; text-align: left; }
+/* Home blurb spans the same width as the Explore honeycomb below it, narrow enough for a comfortable line length. */
+.intro--text .intro__inner { max-width: 640px; text-align: left; }
 /* Home blurb: every paragraph set alike, in bold. */
 .intro--text .intro__lead,
 .intro--text .intro__body { font-size: clamp(1rem, 1.3vw, 1.125rem); line-height: 1.65; font-weight: 600; color: var(--ink); }
@@ -450,14 +450,14 @@ img { display: block; max-width: 100%; }
 /* ---------- Explore (home page summary of the top nav) ---------- */
 
 .explore { background: var(--sand); padding: var(--section-y-tight) 24px; }
-.explore__inner { max-width: 960px; margin: 0 auto; container-type: inline-size; }
+.explore__inner { max-width: 640px; margin: 0 auto; container-type: inline-size; }
 .explore .eyebrow { margin-bottom: 24px; }
 /* Honeycomb of flat-topped hexagons. Each hexagon is 4 column units wide and 2 row units tall; neighbours
    step 3 units across and every other one drops 1 row unit, so the slanted edges interlock. --cols is the
    column unit count (3 per hexagon + 1); a row unit is half a hexagon's height (width × √3/4). Widths are
    measured against .explore__inner (cqw), since a grid can't size its own rows from its own width. */
 .explore__grid {
-  --cols: 19;
+  --cols: 13;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -466,15 +466,13 @@ img { display: block; max-width: 100%; }
   grid-auto-rows: calc(100cqw / var(--cols) * 1.732);
 }
 .explore__grid > li { grid-row-end: span 2; grid-column-end: span 4; display: flex; align-items: center; padding: 3px; }
-/* Desktop: one zigzag row of six. */
-.explore__grid > li:nth-child(odd) { grid-row-start: 1; }
-.explore__grid > li:nth-child(even) { grid-row-start: 2; }
-.explore__grid > li:nth-child(1) { grid-column-start: 1; }
-.explore__grid > li:nth-child(2) { grid-column-start: 4; }
-.explore__grid > li:nth-child(3) { grid-column-start: 7; }
-.explore__grid > li:nth-child(4) { grid-column-start: 10; }
-.explore__grid > li:nth-child(5) { grid-column-start: 13; }
-.explore__grid > li:nth-child(6) { grid-column-start: 16; }
+/* Desktop: a zigzag row of four, with the last two side by side in the dips under the first and third. */
+.explore__grid > li:nth-child(1) { grid-column-start: 1; grid-row-start: 1; }
+.explore__grid > li:nth-child(2) { grid-column-start: 4; grid-row-start: 2; }
+.explore__grid > li:nth-child(3) { grid-column-start: 7; grid-row-start: 1; }
+.explore__grid > li:nth-child(4) { grid-column-start: 10; grid-row-start: 2; }
+.explore__grid > li:nth-child(5) { grid-column-start: 1; grid-row-start: 3; }
+.explore__grid > li:nth-child(6) { grid-column-start: 7; grid-row-start: 3; }
 .explore__card {
   --hex: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
   position: relative;
@@ -513,10 +511,9 @@ img { display: block; max-width: 100%; }
 }
 .explore__card:hover .explore__title { color: var(--gold-text); }
 .explore__text { font-size: var(--text-xs); line-height: 1.5; color: var(--muted); text-wrap: balance; }
-/* Three across, two deep, once the row of six would be under 960px wide and its descriptions would
-   overflow the hexagons (960px plus the section's 24px side padding). */
-@media (max-width: 1007px) {
-  .explore__inner, .intro--text .intro__inner { max-width: 760px; }
+/* Three across, two deep, once the row of four would be under 640px wide and its descriptions would
+   overflow the hexagons (640px plus the section's 24px side padding). */
+@media (max-width: 687px) {
   .explore__grid { --cols: 10; }
   .explore__grid > li:nth-child(n) { grid-column-start: auto; grid-row-start: auto; }
   .explore__grid > li:nth-child(3n+1) { grid-column-start: 1; }
@@ -719,8 +716,8 @@ img { display: block; max-width: 100%; }
 
 /* ---------- News ---------- */
 
-/* Same content width as Featured Stories below, so the edges line up. */
-.news { padding: var(--section-y) 24px var(--section-y-tight); max-width: 1180px; margin: 0 auto; }
+/* Same content width as the intro and Explore honeycomb above, for a comfortable line length. */
+.news { padding: var(--section-y) 24px var(--section-y-tight); max-width: 688px; margin: 0 auto; }
 .news-item {
   display: grid;
   grid-template-columns: 84px minmax(0, 1fr);
