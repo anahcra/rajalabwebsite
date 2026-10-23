@@ -1019,7 +1019,8 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
   line-height: 1.6;
   color: var(--muted);
 }
-.stacker__bldg { display: block; margin-bottom: 4px; font-size: var(--label); letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--gold-text); }
+.stacker__bldg { margin-left: 8px; font-size: var(--label); letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--gold-text); white-space: nowrap; }
+.stacker__desc { display: block; margin-top: 6px; }
 .stacker__list strong,
 .instrument__list strong { font-weight: 600; color: var(--ink); }
 .stacker__list li::before,
@@ -1035,7 +1036,7 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
 /* Instrument card: stacker card, plus a model line and ruled-off subsections. */
 .instrument__model { margin: -8px 0 20px; font-size: var(--text-sm); font-weight: 600; color: var(--gold-text); }
 .instrument__text { margin: 0 0 20px; max-width: 760px; font-size: var(--text); line-height: 1.75; }
-.instrument__list--stack { grid-template-columns: minmax(0, 1fr); max-width: 760px; gap: 10px; }
+.instrument__list--stack { grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); gap: 14px 40px; }
 .instrument__sub { margin-top: 36px; padding-top: 32px; border-top: 1px solid var(--rule); }
 .instrument__sub .instrument__text:last-child { margin-bottom: 0; }
 .instrument__status { margin: 0 0 10px; font-size: var(--label); letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--gold-text); }
