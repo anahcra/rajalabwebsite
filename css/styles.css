@@ -433,7 +433,8 @@ img { display: block; max-width: 100%; }
   line-height: 1.75;
   color: var(--muted);
 }
-.intro--text .intro__inner { text-align: left; }
+/* Home blurb spans the same width as the Explore honeycomb below it. */
+.intro--text .intro__inner { max-width: 960px; text-align: left; }
 /* Home blurb: every paragraph set alike, in bold. */
 .intro--text .intro__lead,
 .intro--text .intro__body { font-size: clamp(1rem, 1.3vw, 1.125rem); line-height: 1.65; font-weight: 600; color: var(--ink); }
@@ -448,50 +449,99 @@ img { display: block; max-width: 100%; }
 
 /* ---------- Explore (home page summary of the top nav) ---------- */
 
-.explore { background: var(--sand); padding: var(--section-y) 24px; }
-.explore__inner { max-width: 1080px; margin: 0 auto; }
+.explore { background: var(--sand); padding: var(--section-y-tight) 24px; }
+.explore__inner { max-width: 960px; margin: 0 auto; container-type: inline-size; }
 .explore .eyebrow { margin-bottom: 24px; }
+/* Honeycomb of flat-topped hexagons. Each hexagon is 4 column units wide and 2 row units tall; neighbours
+   step 3 units across and every other one drops 1 row unit, so the slanted edges interlock. --cols is the
+   column unit count (3 per hexagon + 1); a row unit is half a hexagon's height (width × √3/4). Widths are
+   measured against .explore__inner (cqw), since a grid can't size its own rows from its own width. */
 .explore__grid {
+  --cols: 19;
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  grid-auto-rows: calc(100cqw / var(--cols) * 1.732);
 }
-.explore__grid > li { flex: 0 1 calc(25% - 12px); }
-@media (max-width: 1000px) {
-  .explore__grid > li { flex-basis: calc(33.333% - 11px); }
-}
-@media (max-width: 760px) {
-  .explore__grid > li { flex-basis: calc(50% - 8px); }
-}
-@media (max-width: 540px) {
-  .explore__grid > li { flex-basis: 100%; }
-}
+.explore__grid > li { grid-row-end: span 2; grid-column-end: span 4; display: flex; align-items: center; padding: 3px; }
+/* Desktop: one zigzag row of six. */
+.explore__grid > li:nth-child(odd) { grid-row-start: 1; }
+.explore__grid > li:nth-child(even) { grid-row-start: 2; }
+.explore__grid > li:nth-child(1) { grid-column-start: 1; }
+.explore__grid > li:nth-child(2) { grid-column-start: 4; }
+.explore__grid > li:nth-child(3) { grid-column-start: 7; }
+.explore__grid > li:nth-child(4) { grid-column-start: 10; }
+.explore__grid > li:nth-child(5) { grid-column-start: 13; }
+.explore__grid > li:nth-child(6) { grid-column-start: 16; }
 .explore__card {
+  --hex: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  height: 100%;
-  padding: 22px 24px 24px;
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  border-radius: 6px;
-  transition: border-color .25s;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  aspect-ratio: 2 / 1.732; /* regular hexagon: every side equal */
+  padding: 0 17%;
+  text-align: center;
+  background: var(--rule); /* shows as the outline around the paper fill below */
+  clip-path: var(--hex);
+  isolation: isolate;
+  transition: background .25s;
 }
-.explore__card:hover { border-color: var(--gold); }
+.explore__card::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  z-index: -1;
+  background: var(--paper);
+  clip-path: var(--hex);
+}
+.explore__card:hover { background: var(--gold); }
+.explore__card:focus-visible { outline: none; background: var(--blue); }
 .explore__title {
   font-family: var(--display);
   font-weight: 800;
-  font-size: 1.125rem;
-  letter-spacing: .06em;
+  font-size: .9375rem;
+  letter-spacing: .04em;
   text-transform: uppercase;
+  white-space: nowrap;
   color: var(--blue);
 }
 .explore__card:hover .explore__title { color: var(--gold-text); }
-.explore__text { font-size: var(--text-sm); line-height: 1.6; color: var(--muted); }
+.explore__text { font-size: var(--text-xs); line-height: 1.5; color: var(--muted); }
+/* Three across, two deep, once the row of six would be under 960px wide and its descriptions would
+   overflow the hexagons (960px plus the section's 24px side padding). */
+@media (max-width: 1007px) {
+  .explore__inner, .intro--text .intro__inner { max-width: 760px; }
+  .explore__grid { --cols: 10; }
+  .explore__grid > li:nth-child(n) { grid-column-start: auto; grid-row-start: auto; }
+  .explore__grid > li:nth-child(3n+1) { grid-column-start: 1; }
+  .explore__grid > li:nth-child(3n+2) { grid-column-start: 4; }
+  .explore__grid > li:nth-child(3n) { grid-column-start: 7; }
+  .explore__grid > li:nth-child(1), .explore__grid > li:nth-child(3) { grid-row-start: 1; }
+  .explore__grid > li:nth-child(2) { grid-row-start: 2; }
+  .explore__grid > li:nth-child(4), .explore__grid > li:nth-child(6) { grid-row-start: 3; }
+  .explore__grid > li:nth-child(5) { grid-row-start: 4; }
+}
+/* Phone: two across, three deep, titles only. */
+@media (max-width: 600px) {
+  .explore__inner, .intro--text .intro__inner { max-width: 400px; }
+  .explore__grid { --cols: 7; }
+  .explore__grid > li:nth-child(odd) { grid-column-start: 1; }
+  .explore__grid > li:nth-child(even) { grid-column-start: 4; }
+  .explore__grid > li:nth-child(1) { grid-row-start: 1; }
+  .explore__grid > li:nth-child(2) { grid-row-start: 2; }
+  .explore__grid > li:nth-child(3) { grid-row-start: 3; }
+  .explore__grid > li:nth-child(4) { grid-row-start: 4; }
+  .explore__grid > li:nth-child(5) { grid-row-start: 5; }
+  .explore__grid > li:nth-child(6) { grid-row-start: 6; }
+  .explore__card { padding: 0 12%; }
+  .explore__text { display: none; }
+}
 
 /* ---------- Research ---------- */
 
