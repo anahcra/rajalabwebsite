@@ -480,12 +480,12 @@ img { display: block; max-width: 100%; }
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; /* every title at the same height, descriptions hanging below */
   align-items: center;
   gap: 6px;
   width: 100%;
   aspect-ratio: 2 / 1.732; /* regular hexagon: every side equal */
-  padding: 0 17%;
+  padding: 21% 17% 0;
   text-align: center;
   background: var(--rule); /* shows as the outline around the paper fill below */
   clip-path: var(--hex);
@@ -518,6 +518,7 @@ img { display: block; max-width: 100%; }
 @media (max-width: 1007px) {
   .explore__inner, .intro--text .intro__inner { max-width: 760px; }
   .explore__grid { --cols: 10; }
+  .explore__card { padding-top: 30%; }
   .explore__grid > li:nth-child(n) { grid-column-start: auto; grid-row-start: auto; }
   .explore__grid > li:nth-child(3n+1) { grid-column-start: 1; }
   .explore__grid > li:nth-child(3n+2) { grid-column-start: 4; }
@@ -539,7 +540,7 @@ img { display: block; max-width: 100%; }
   .explore__grid > li:nth-child(4) { grid-row-start: 4; }
   .explore__grid > li:nth-child(5) { grid-row-start: 5; }
   .explore__grid > li:nth-child(6) { grid-row-start: 6; }
-  .explore__card { padding: 0 12%; }
+  .explore__card { justify-content: center; padding: 0 12%; }
   .explore__text { display: none; }
 }
 
