@@ -48,6 +48,17 @@
     return n;
   }
 
+  // Boats cast their shadows onto the water toward the viewer, like the bridge deck's: the silhouette
+  // flipped about the waterline, flattened by SH_K and leaning right (away from the upper-left light).
+  // Like the deck's shadow it breaks up on the chop, into SH_N bands that sway sideways out of step,
+  // more and with wider gaps between them the further they fall from the hull.
+  const BOAT_H = 36, BOAT_S = 50, SH_K = .48, SH_SKEW = .3, SH_N = 8;
+  const SH_DEPTH = (BOAT_H + BOAT_S) * SH_K;
+  const SH_BANDS = Array.from({ length: SH_N }, (_, i) => {
+    const y0 = SH_DEPTH * i / SH_N, y1 = SH_DEPTH * (i + 1) / SH_N;
+    return [y0, y1 - (i ? .3 + .15 * i : 0)];
+  });
+
   /* ---------- scene ---------- */
   const svg = el('svg', { viewBox: '0 0 1440 580', preserveAspectRatio: 'xMidYMid slice' });
   svg.innerHTML = `
@@ -97,12 +108,18 @@
       <linearGradient id="tk-sail-shade" x1="0" y1="0" x2="1" y2="1">
         <stop offset="0" stop-color="${FOLD}"/><stop offset="1" stop-color="#CDB590"/>
       </linearGradient>
+      <!-- Cast shadow on the water: blurred more across than down, so its strips read as streaks. -->
+      <filter id="tk-water-shadow" x="-10%" y="-20%" width="120%" height="140%">
+        <feGaussianBlur stdDeviation="1.8 .6"/>
+      </filter>
+      ${SH_BANDS.map(([y0, y1], i) => `<clipPath id="tk-sh-${i}"><rect x="-4000" y="${y0.toFixed(1)}" width="8000" height="${(y1 - y0).toFixed(1)}"/></clipPath>`).join('')}
       <filter id="tk-text-shadow" x="-5%" y="-30%" width="110%" height="160%">
         <feDropShadow dx="0" dy="1" stdDeviation="1.3" flood-color="#000" flood-opacity=".6"/>
       </filter>
     </defs>
     <image href="assets/golden-gate.jpg" x="0" y="0" width="1440" height="580" preserveAspectRatio="xMidYMid slice"/>
     <g class="ticker__questions" mask="url(#tk-fade)" filter="url(#tk-text-shadow)"></g>
+    <g class="ticker__shadows"></g>
     <g class="ticker__fleet"></g>
     <g transform="translate(455,372)">
       <circle class="ticker__glow" r="46" fill="url(#tk-glow)" opacity=".4"/>
@@ -198,7 +215,7 @@
   }
 
   /* ---------- fleet ---------- */
-  const fleet = svg.querySelector('.ticker__fleet');
+  const fleet = svg.querySelector('.ticker__fleet'), shadows = svg.querySelector('.ticker__shadows');
   const FS = 14;
   function textW(s, fs = FS) {
     measureCtx.font = `700 ${fs}px ${SANS}`;
@@ -219,7 +236,7 @@
     // the inside of the far wall showing above it, and a creased peak in the middle; edges come from
     // shading, not outlines. The ends slope in a long way (B); the label, a size down, is centred on the
     // hull's height, and the slope eases off on short labels so the letters' bottom corners clear it.
-    const w = textW(paper.label) + 64, h = 36, T = 14, S = 50, edge = '#B9A27F';
+    const w = textW(paper.label) + 64, h = BOAT_H, T = 14, S = BOAT_S, edge = '#B9A27F';
     const base = h / 2 + 4.5, margin = (w - textW(paper.label, FS - 1)) / 2;
     const B = Math.min(52, (margin - 4) * (h + T) / (base + T));
     // Outline whose top runs tip to tip as one smooth curve dipping to y = mid at the centre, with the
@@ -258,7 +275,16 @@
         </g>
         <text x="${w / 2}" y="${base}" text-anchor="middle" font-weight="700" font-size="${FS - 1}" letter-spacing="1.6" fill="${BLUE}">${paper.label}</text>
       </g>`;
-    return { g, w };
+    // Shadow: the hull, far wall and sail outlines mapped so the waterline (y = h) lands on y = 0
+    // and height above it becomes depth below it; one copy per band, each clipped to its band.
+    const sil = [front, inner, peak].map((d) => `<path d="${d}"/>`).join('');
+    const sh = el('g', {});
+    sh.innerHTML = `<g transform="translate(${-w / 2},0)" fill="#06203a" filter="url(#tk-water-shadow)">${SH_BANDS.map((_, i) =>
+      `<g clip-path="url(#tk-sh-${i})" opacity="${(.58 - .04 * i).toFixed(3)}"><g>
+         <g transform="matrix(1,0,${-SH_SKEW},${-SH_K},${SH_SKEW * h},${SH_K * h})">${sil}</g>
+       </g></g>`).join('')}</g>`;
+    const bands = [...sh.querySelectorAll('[clip-path] > g')];
+    return { g, w, sh, bands };
   }
   const SPEED = 34, GAP = 240, EMERGE = 210; // papers grow out of the wavefront over the first 210px
   const route = svg.querySelector('#tk-boat-path'), len = route.getTotalLength();
@@ -273,8 +299,15 @@
     const dy = Math.sin(t * 1.5 + it.phase) * 1.6 * grow; // bob
     const rot = Math.sin(t * 1.1 + it.phase) * 1.2 * grow; // rock
     it.g.setAttribute('transform', `translate(${p.x},${p.y + dy}) rotate(${rot}) scale(${s})`);
-    const fadeOut = f > .85 ? (1 - f) / .15 : 1;
-    it.g.setAttribute('opacity', Math.max(0, Math.min(grow * 1.4, fadeOut)).toFixed(3));
+    const fadeOut = f > .85 ? (1 - f) / .15 : 1, op = Math.max(0, Math.min(grow * 1.4, fadeOut)).toFixed(3);
+    it.g.setAttribute('opacity', op);
+    // The shadow rides the same swell but doesn't rock; it starts at the hull's waterline.
+    it.sh.setAttribute('transform', `translate(${p.x},${p.y + dy + BOAT_H * .45 * s}) scale(${s})`);
+    it.sh.setAttribute('opacity', op);
+    it.bands.forEach((b, i) => {
+      const dx = (.6 + 1.1 * i) * Math.sin(t * 2.3 - i * 1.1 + it.phase) + .6 * i * Math.sin(t * 3.7 + i * 2.3);
+      b.setAttribute('transform', `translate(${dx.toFixed(2)},0)`);
+    });
   }
   function nextPaper() {
     const it = makeBoat(PAPERS[pubIdx++ % PAPERS.length]);
@@ -288,6 +321,7 @@
   }
   function fill(t) {
     fleet.replaceChildren();
+    shadows.replaceChildren();
     items = []; pubIdx = 0; pending = null;
     let prev = nextPaper();
     prev.d = len * .9;
@@ -297,15 +331,15 @@
       if (d < 0) { pending = cur; break; }
       cur.d = d; items.push(cur); prev = cur;
     }
-    items.forEach((it) => { fleet.appendChild(it.g); place(it, t); });
+    items.forEach((it) => { fleet.appendChild(it.g); shadows.appendChild(it.sh); place(it, t); });
   }
   function step(dt, t) {
     for (const it of items) { it.d += SPEED * dt * Math.max(baseScale(it.d / len), .6); place(it, t); }
-    while (items.length && items[0].d >= len) { items[0].g.remove(); items.shift(); }
+    while (items.length && items[0].d >= len) { items[0].g.remove(); items[0].sh.remove(); items.shift(); }
     if (!pending) pending = nextPaper();
     const newest = items[items.length - 1];
     const d0 = newest ? behind(newest, pending) : 0;
-    if (d0 >= 0) { pending.d = d0; fleet.appendChild(pending.g); items.push(pending); place(pending, t); pending = null; }
+    if (d0 >= 0) { pending.d = d0; fleet.appendChild(pending.g); shadows.appendChild(pending.sh); items.push(pending); place(pending, t); pending = null; }
   }
 
   let t = 3;
