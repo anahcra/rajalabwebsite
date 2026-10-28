@@ -18,7 +18,7 @@ js/main.js          nav behaviour (transparent → solid on scroll, mobile menu)
 js/ticker.js        animated paper-boat header (publications.html)
 js/stream.js        home: appends each other page's sections, in nav order, as the reader scrolls (list in index.html #stream)
 js/news.js          home "Featured Stories": latest Foundry stories from foundry.lbl.gov (falls back to the cards in index.html)
-assets/             images, CV, logo (wordmark.svg: the RΛJΛ LΛBS nav wordmark, its letters take currentColor and its Λs stay gold; favicon.svg + apple-touch-icon.png: the RΛ icon); assets/news/ holds the fallback Foundry story images
+assets/             images, CV, logo (wordmark.svg: the RΛJΛ LΛBS nav wordmark, its letters take currentColor and its Λs take --lambda: deep amber --gold-logo on light backgrounds, bright --gold on navy; favicon.svg + apple-touch-icon.png: the RΛ icon); assets/news/ holds the fallback Foundry story images
 sitemap.xml         page list for search engines (update <lastmod> when pages change)
 robots.txt          points crawlers at the sitemap
 google491bed8f45249d09.html  Google Search Console ownership check (keep it, or Search Console loses access)

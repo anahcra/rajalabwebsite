@@ -5,6 +5,7 @@
   --gold: #FDB515;
   --gold-dark: #c99a1f;
   --gold-text: #866000; /* gold dark enough for text on paper and sand (5:1+) */
+  --gold-logo: #B87700; /* the wordmark's Λs on paper (3.5:1); bright --gold fades to under 2:1 there */
   --ink: #1a1a1a;
   --paper: #fbfaf7;
   --sand: #f3f0e8;
@@ -156,7 +157,12 @@ img { display: block; max-width: 100%; }
   -webkit-backdrop-filter: blur(10px);
 }
 
-/* The RΛJΛ LΛBS wordmark (assets/wordmark.svg): its letters take the nav's text colour, the Λs stay gold. */
+/* The RΛJΛ LΛBS wordmark (assets/wordmark.svg): its letters take the nav's text colour and its Λs take --lambda,
+   bright gold over the home hero and deep amber once the bar turns light (solid, or the open mobile menu). */
+.nav { --lambda: var(--gold); }
+.nav.is-solid,
+.nav--solid,
+.nav.is-open { --lambda: var(--gold-logo); }
 .nav__brand {
   display: block;
   flex-shrink: 0;
