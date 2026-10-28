@@ -8,7 +8,7 @@
 
   const queue = stream.dataset.pages.trim().split(/\s+/);
   // Pages grouped under one nav item highlight that item.
-  const NAV = { 'team.html': 'about.html', 'lab-life.html': 'join.html', 'faq.html': 'join.html' };
+  const NAV = { 'team.html': 'about.html', 'lab-life.html': 'join.html', 'values.html': 'join.html', 'faq.html': 'join.html' };
   const navLinks = Array.from(document.querySelectorAll('.nav__link'));
   const sentinel = document.createElement('div');
   stream.after(sentinel);

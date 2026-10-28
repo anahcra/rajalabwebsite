@@ -10,6 +10,7 @@ about.html          PI bio
 publications.html   paper-boat header + all publications
 team.html           group members and alumni
 lab-life.html       what working in the lab is like
+values.html         core values: embeds Berkeley Lab's stewardship.lbl.gov/values page
 visit.html          getting to the Molecular Foundry
 faq.html            joining, user access, visiting (<details> accordions)
 join.html           openings / contact
@@ -24,7 +25,7 @@ robots.txt          points crawlers at the sitemap
 google491bed8f45249d09.html  Google Search Console ownership check (keep it, or Search Console loses access)
 ```
 
-Each page repeats the same nav and footer. The top nav has seven items; pages grouped under one item share a header (`.page-head--tabs`: the group name as eyebrow, the page name as title, same background) with a tab strip (`.subnav`) along its bottom: People = about + team, Join = join + lab-life + faq. On a grouped page, the parent nav item gets `is-active` and the page's own tab gets `is-active` plus `aria-current="page"`. When adding a page, copy an existing one, mark its nav link (and tab, if grouped) as above, give it its own `<title>`, description, canonical and Open Graph tags, and add it to `sitemap.xml` and, in nav order, to the `data-pages` list on the home page's `#stream`. Canonical/OG URLs use `https://rajalabs.lbl.gov/` (see `CNAME`).
+Each page repeats the same nav and footer. The top nav has seven items; pages grouped under one item share a header (`.page-head--tabs`: the group name as eyebrow, the page name as title, same background) with a tab strip (`.subnav`) along its bottom: People = about + team, Join = join + lab-life + values + faq. On a grouped page, the parent nav item gets `is-active` and the page's own tab gets `is-active` plus `aria-current="page"`. When adding a page, copy an existing one, mark its nav link (and tab, if grouped) as above, give it its own `<title>`, description, canonical and Open Graph tags, and add it to `sitemap.xml` and, in nav order, to the `data-pages` list on the home page's `#stream`. Canonical/OG URLs use `https://rajalabs.lbl.gov/` (see `CNAME`).
 
 ## Local preview
 
