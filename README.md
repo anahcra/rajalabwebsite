@@ -13,7 +13,7 @@ lab-life.html       what working in the lab is like
 values.html         core values: embeds Berkeley Lab's stewardship.lbl.gov/values page
 visit.html          getting to the Molecular Foundry
 faq.html            joining, user access, visiting (<details> accordions)
-join.html           openings / contact
+join.html           Getting Started: ways to join, the path to working in the lab (approval, site access, safety training, instrument training), contact
 analytics.html      Visitor Analytics dashboard (linked from the home globe; noindex, not in the nav, sitemap or stream)
 css/styles.css      styles + responsive breakpoints
 js/main.js          nav behaviour (transparent → solid on scroll, mobile menu)
