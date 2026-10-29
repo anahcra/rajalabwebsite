@@ -132,7 +132,11 @@ img { display: block; max-width: 100%; }
 
 /* ---------- Nav ---------- */
 
+/* Over the home hero the nav blends from a soft navy dusk band into the solid navy bar as the page
+   scrolls: js/main.js sets --nav-p from 0 (top of the page) to 1 (bar fully solid). Letters stay white
+   and the Λs gold throughout, so they read on the bright sky and on the bar alike. */
 .nav {
+  --nav-p: 0;
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 50;
@@ -141,21 +145,27 @@ img { display: block; max-width: 100%; }
   justify-content: space-between;
   gap: 32px;
   padding: 0 40px;
-  height: var(--nav-h);
-  background: transparent;
-  color: rgba(255, 255, 255, .92);
-  transition: all .35s ease;
+  height: calc(var(--nav-h) - (var(--nav-h) - var(--nav-h-solid)) * var(--nav-p));
+  background: rgba(0, 50, 98, calc(.97 * var(--nav-p)));
+  color: #fff;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, calc(.18 * var(--nav-p)));
+  text-shadow: 0 1px 10px rgba(0, 20, 45, calc(.55 * (1 - var(--nav-p))));
+  backdrop-filter: blur(calc(10px * var(--nav-p)));
+  -webkit-backdrop-filter: blur(calc(10px * var(--nav-p)));
+}
+/* The dusk band: navy at the top edge fading into the photo, so the sky behind the letters is never pale.
+   It fades out as the solid bar fades in. */
+.nav::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 -64px;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(0, 32, 66, .62) 0%, rgba(0, 32, 66, .38) 50%, rgba(0, 32, 66, 0) 100%);
+  opacity: calc(1 - var(--nav-p));
 }
 /* The solid bar is navy, so the wordmark's gold Λs and the gold active link always sit on navy (7:1). */
-.nav.is-solid,
-.nav--solid {
-  height: var(--nav-h-solid);
-  background: rgba(0, 50, 98, .97);
-  color: rgba(255, 255, 255, .92);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, .18);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
+.nav--solid { --nav-p: 1; }
 
 /* The RΛJΛ LΛBS wordmark (assets/wordmark.svg): its letters take the nav's text colour, the Λs stay gold. */
 .nav__brand {
@@ -169,6 +179,7 @@ img { display: block; max-width: 100%; }
   height: 15px;
   width: auto;
   aspect-ratio: 6917 / 711; /* the wordmark's viewBox */
+  filter: drop-shadow(0 1px 6px rgba(0, 20, 45, calc(.5 * (1 - var(--nav-p))))); /* SVG ignores text-shadow */
 }
 
 .nav__links { display: flex; gap: 28px; align-items: center; }
@@ -1661,7 +1672,8 @@ button.va-list__row:hover .va-list__name > :first-child { color: var(--blue); te
   .nav__link { padding: 14px 0; border-bottom: 1px solid rgba(255, 255, 255, .14); }
   .nav__link:last-child { border-bottom: 0; }
   .nav__link::after { display: none; }
-  .nav.is-open { background: var(--blue); color: rgba(255, 255, 255, .92); }
+  .nav.is-open { background: var(--blue); color: rgba(255, 255, 255, .92); text-shadow: none; }
+  .nav.is-open::before { opacity: 0; }
   .nav.is-open .nav__links { visibility: visible; opacity: 1; transform: none; }
   .nav.is-open .nav__toggle span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
   .nav.is-open .nav__toggle span:nth-child(2) { opacity: 0; }
