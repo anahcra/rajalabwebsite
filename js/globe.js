@@ -55,13 +55,13 @@
     ctx.fillStyle = '#b9cde6';
     paths.forEach((path, i) => { ctx.globalAlpha = 0.15 + 0.6 * (i + 0.5) / BANDS; ctx.fill(path); });
 
-    // Visiting cities, sized by visits.
+    // Visiting cities, sized by visits (radii are for a 120px globe, scaled to the actual size).
     ctx.fillStyle = '#FDB515';
     for (const city of cities) {
       const p = view(city.v);
       if (p[2] <= 0) continue;
       ctx.globalAlpha = 0.4 + 0.6 * p[2];
-      ctx.beginPath(); ctx.arc(c + p[0] * R, c - p[1] * R, city.r, 0, 7); ctx.fill();
+      ctx.beginPath(); ctx.arc(c + p[0] * R, c - p[1] * R, city.r * size / 120, 0, 7); ctx.fill();
     }
     ctx.globalAlpha = 1;
   }
