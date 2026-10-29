@@ -3,7 +3,7 @@
 Static multi-page site for Raja Labs (Light, Electrons & Quantum Interfaces; Molecular Foundry, LBNL). No build step.
 
 ```
-index.html          home: hero, intro, lab updates, featured Foundry stories, visitors globe, then every other page (js/stream.js)
+index.html          home: hero, intro, lab updates, featured Foundry stories, then every other page (js/stream.js); a small visitors globe in the footer
 research.html       research areas
 facilities.html     optics labs, Montana s100 and attoDRY2100 (+ strain cell) microscopes, upcoming Qlibri fiber microcavity, stackers, Foundry user-proposal access
 about.html          PI bio
@@ -20,7 +20,7 @@ js/main.js          nav behaviour (transparent → solid on scroll, mobile menu)
 js/ticker.js        animated paper-boat header (publications.html)
 js/stream.js        home: appends each other page's sections, in nav order, as the reader scrolls (list in index.html #stream)
 js/visits.js        records one visit per tab on the live site (Supabase) and loads them for the globe and analytics page
-js/globe.js         home: the turning globe of visitors
+js/globe.js         home footer: the small turning globe of visitors, linking to analytics.html
 js/visitor-analytics.js  analytics.html: map, trends, devices, busiest times, recent visits
 js/news.js          home "Featured Stories": latest Foundry stories from foundry.lbl.gov (falls back to the cards in index.html)
 assets/world.json   country outlines for the analytics map (Natural Earth 1:110m via world-atlas, Equal Earth projection)

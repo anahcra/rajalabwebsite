@@ -220,24 +220,16 @@
       </div>
     </section>
 
-    <!-- VISITORS: js/globe.js draws where visitors are from the visits js/visits.js records; hidden until it has them. -->
-    <section class="visitors" id="visitors" aria-labelledby="visitors-title" hidden>
-      <div class="visitors__card">
-        <div class="visitors__head">
-          <h2 class="visitors__title" id="visitors-title">Visitors</h2>
-          <span class="visitors__sample">Sample data</span>
-          <a class="visitors__more" href="analytics.html">Visitor analytics →</a>
-        </div>
-        <canvas class="visitors__globe" id="visitors-globe" role="img" aria-label="Globe of where visitors are"></canvas>
-        <p class="visitors__stats"><span class="visitors__live" aria-hidden="true"></span><span><b id="visitors-total">0</b> visits</span><span class="visitors__sep" aria-hidden="true">/</span><span><b id="visitors-regions">0</b> countries</span><span class="visitors__sep visitors__sep--latest" aria-hidden="true">/</span><span><span class="visitors__label">Latest </span><b id="visitors-latest">—</b></span></p>
-      </div>
-    </section>
-
     <!-- EVERY OTHER PAGE, in nav order: js/stream.js appends each one's sections as the reader scrolls down. -->
     <div class="stream" id="stream" data-pages="about.html team.html research.html publications.html facilities.html visit.html join.html lab-life.html values.html faq.html"></div>
   </main>
 
   <footer class="footer">
+    <!-- js/globe.js draws where visitors are from the visits js/visits.js records; hidden until it has one. -->
+    <a class="globe" id="visitors" href="analytics.html" hidden>
+      <canvas class="globe__canvas" id="visitors-globe" aria-hidden="true"></canvas>
+      <span class="globe__stats" id="visitors-stats"></span>
+    </a>
     Raja Labs · <a href="mailto:araja@lbl.gov">araja@lbl.gov</a> · © 2026
   </footer>
 

@@ -1303,91 +1303,16 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
 .btn--gold { padding: 16px 28px; background: var(--gold); color: var(--blue); border-color: var(--gold); text-transform: none; letter-spacing: .02em; font-size: var(--text-sm); font-weight: 700; }
 .btn--gold:hover { background: #fff; border-color: #fff; color: var(--blue); }
 
-/* ---------- Visitors (home page globe) ---------- */
+/* ---------- Visitors globe (home page footer) ---------- */
 
-/* js/globe.js draws the globe into the canvas; the stats line sits over its lower edge. */
-.visitors { padding: var(--section-y-tight) 24px var(--section-y); }
-.visitors__card {
-  position: relative;
-  max-width: 1132px;
-  margin: 0 auto;
-  overflow: hidden;
-  border-radius: 6px;
-  background: radial-gradient(ellipse at 50% 45%, #0a3d73 0%, #022448 45%, #00152c 100%);
-  color: #fff;
-  -webkit-font-smoothing: antialiased;
-}
-.visitors__head {
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 22px 26px;
-  pointer-events: none;
-}
-.visitors__title { margin: 0; font-size: var(--label); letter-spacing: .2em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
-.visitors__sample {
-  display: none;
-  padding: 2px 8px;
-  border: 1px solid rgba(255, 255, 255, .35);
-  border-radius: 3px;
-  font-size: var(--label);
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, .8);
-}
-.visitors.is-sample .visitors__sample { display: inline-block; }
-.visitors__more {
-  margin-left: auto;
-  font-size: var(--label);
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: #fff;
-  pointer-events: auto;
-}
-.visitors__more:hover { color: var(--gold); }
-.visitors__globe { display: block; width: 100%; height: 440px; cursor: grab; touch-action: pan-y; }
-.visitors__globe:active { cursor: grabbing; }
-.visitors__stats {
-  position: absolute;
-  left: 50%; bottom: 22px;
-  transform: translateX(-50%);
-  width: max-content;
-  max-width: calc(100% - 32px);
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 4px 14px;
-  padding: 12px 24px;
-  border: 1px solid rgba(255, 255, 255, .14);
-  border-radius: 999px;
-  background: rgba(0, 21, 44, .62);
-  backdrop-filter: blur(6px);
-  font-family: var(--display);
-  font-size: var(--label);
-  font-weight: 600;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, .62);
-}
-.visitors__stats b { color: #fff; font-weight: 700; }
-.visitors__sep { color: rgba(255, 255, 255, .28); }
-.visitors__live {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--gold);
-  animation: visitors-live 2.2s infinite;
-}
-@keyframes visitors-live {
-  0% { box-shadow: 0 0 0 0 rgba(253, 181, 21, .6); }
-  70%, 100% { box-shadow: 0 0 0 9px rgba(253, 181, 21, 0); }
-}
-@media (prefers-reduced-motion: reduce) { .visitors__live { animation: none; } }
+/* js/globe.js draws a small globe of visiting cities; it links to the Visitor Analytics page. */
+.footer .globe { display: block; width: fit-content; margin: 0 auto 28px; color: var(--muted); }
+.globe[hidden] { display: none; }
+.globe__canvas { display: block; width: 120px; height: 120px; margin: 0 auto 10px; transition: transform .3s; }
+.globe__stats { display: block; }
+.footer .globe:hover { color: var(--gold-text); }
+.globe:hover .globe__canvas { transform: scale(1.04); }
+@media (prefers-reduced-motion: reduce) { .globe__canvas { transition: none; } }
 
 /* ---------- Visitor analytics ---------- */
 
@@ -1605,11 +1530,6 @@ button.va-list__row:hover .va-list__name > :first-child { color: var(--blue); te
   .va-list--scroll { max-height: 420px; }
 }
 @media (max-width: 640px) {
-  .visitors { padding-left: 16px; padding-right: 16px; }
-  .visitors__head { padding: 18px 18px; }
-  .visitors__globe { height: 380px; }
-  .visitors__stats { bottom: 14px; padding: 10px 16px; border-radius: 14px; letter-spacing: .1em; }
-  .visitors__sep--latest { display: none; }
   .va { padding-left: 16px; padding-right: 16px; }
   .va-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .va-kpi--main { grid-column: 1 / -1; }
