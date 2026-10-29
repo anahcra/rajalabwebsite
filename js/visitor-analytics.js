@@ -61,11 +61,6 @@
     const d = Math.floor(s / 86400);
     return d + (d === 1 ? ' day ago' : ' days ago');
   }
-  function when(t) {
-    const today = startOfDay(Date.now());
-    const day = t >= today ? 'Today' : t >= today - DAY ? 'Yesterday' : fDayY.format(t);
-    return day + ', ' + fClock.format(t);
-  }
   function hourName(h) { return h === 0 ? '12 AM' : h < 12 ? h + ' AM' : h === 12 ? '12 PM' : (h - 12) + ' PM'; }
   function hourSpan(h, len) {
     const a = hourName(h), b = hourName((h + (len || 1)) % 24);
@@ -224,7 +219,10 @@
     const refresh = el('button', 'va-link', 'Refresh');
     refresh.type = 'button';
     refresh.addEventListener('click', load);
-    status.append(el('span', 'va-dot', '·'), refresh);
+    const privacy = el('a', 'va-link', 'Privacy');
+    privacy.href = '#privacy';
+    privacy.addEventListener('click', (e) => { e.preventDefault(); $('privacy').scrollIntoView({ behavior: 'smooth' }); });
+    status.append(el('span', 'va-dot', '·'), refresh, el('span', 'va-dot', '·'), privacy);
   }
 
   // ---------- KPIs ----------
@@ -728,27 +726,19 @@
 
   // ---------- recent visits ----------
 
+  // Only the country and roughly when, so no single visit can be picked out by city, device or exact time.
   function renderRecent(data) {
     const body = $('va-recent').querySelector('tbody');
     body.replaceChildren();
     const rows = data.rows.slice(-state.recent).reverse();
     for (const r of rows) {
       const tr = el('tr');
-      const time = el('td');
-      time.append(el('div', '', when(r.t)), el('div', 'va-sub', ago(r.t)));
-      const loc = el('td');
-      if (r.city) loc.append(el('b', '', r.city), document.createTextNode(r.country ? ', ' + r.country : ''));
-      else loc.textContent = r.country || 'Unknown';
-      tr.append(time, loc,
-        el('td', '', [r.browser, r.os].filter(Boolean).join(' on ') || '–'),
-        el('td', '', r.device || '–'),
-        el('td', '', langLabel(r.lang) || '–'),
-        el('td', '', r.source || 'Direct'));
+      tr.append(el('td', '', ago(r.t)), el('td', '', r.country || 'Unknown'));
       body.append(tr);
     }
     if (!rows.length) {
       const tr = el('tr'), td = el('td', 'va-empty', 'No visits in this period.');
-      td.colSpan = 6; tr.append(td); body.append(tr);
+      td.colSpan = 2; tr.append(td); body.append(tr);
     }
     $('va-recent-count').textContent = rows.length ? 'Showing ' + fmt(rows.length) + ' of ' + fmt(data.rows.length) + ', newest first' : '';
     const more = $('va-recent-more');

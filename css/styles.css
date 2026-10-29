@@ -1570,13 +1570,15 @@ button.va-list__row:hover .va-list__name > :first-child { color: var(--blue); te
 .va-table th { padding: 8px 14px 8px 0; border-bottom: 1px solid var(--rule); font-size: var(--label); font-weight: 600; text-align: left; color: var(--muted); }
 .va-table td { padding: 10px 14px 10px 0; border-bottom: 1px solid #efece5; vertical-align: top; }
 .va-table .va-num { text-align: right; }
-.va-table--trend { max-width: 440px; }
+.va-table--trend, .va-table--recent { max-width: 440px; }
 .va-sub { font-size: var(--label); color: var(--muted); }
 .va-recent__foot { display: flex; align-items: center; gap: 16px; margin-top: 14px; font-size: var(--text-xs); color: var(--muted); }
 .va-btn { padding: 8px 14px; background: #fff; border: 1px solid var(--rule); border-radius: 4px; font: 600 var(--text-xs) var(--body); color: var(--blue); cursor: pointer; }
 .va-btn:hover { border-color: var(--blue); }
 
 .va-about { max-width: 760px; margin-top: 48px; font-size: var(--text-xs); line-height: 1.65; color: var(--muted); }
+.va-about p { margin: 12px 0 0; }
+.va-about b { color: var(--ink); font-weight: 600; }
 .va-about ul { margin: 12px 0 0; padding-left: 18px; }
 .va-about li + li { margin-top: 6px; }
 

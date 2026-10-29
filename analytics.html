@@ -152,8 +152,8 @@
               <h2 class="va-card__title">Recent visits</h2>
             </div>
             <div class="va-table-wrap">
-              <table class="va-table" id="va-recent">
-                <thead><tr><th scope="col">Time</th><th scope="col">Location</th><th scope="col">Browser</th><th scope="col">Device</th><th scope="col">Language</th><th scope="col">Came from</th></tr></thead>
+              <table class="va-table va-table--recent" id="va-recent">
+                <thead><tr><th scope="col">When</th><th scope="col">From</th></tr></thead>
                 <tbody></tbody>
               </table>
             </div>
@@ -164,14 +164,17 @@
           </div>
         </div>
 
-        <div class="va-about">
-          <h2 class="va-card__title">About this data</h2>
+        <div class="va-about" id="privacy">
+          <h2 class="va-card__title">Privacy</h2>
+          <p>We count visits to this website to learn where our readers are and how they find us. Here is what that involves.</p>
           <ul>
-            <li>A visit is one browser tab opening the site. Reading more pages in the same tab doesn&rsquo;t add visits, and there are no cookies, so returning visitors aren&rsquo;t told apart.</li>
-            <li>Locations are approximate, to the city, looked up from the visitor&rsquo;s IP address by a free geolocation service. The IP address itself isn&rsquo;t stored.</li>
-            <li>Browsers that send Do Not Track or Global Privacy Control, and known bots, aren&rsquo;t counted. Neither are visits to this page.</li>
-            <li>Busiest times use each visitor&rsquo;s own time zone; everything else is in yours.</li>
+            <li><b>What a visit is.</b> One browser tab opening the site. Reading more pages in the same tab doesn&rsquo;t add visits. There are no cookies or visitor IDs, so returning visitors aren&rsquo;t told apart and no one is followed from one visit to the next.</li>
+            <li><b>What&rsquo;s recorded.</b> The approximate city, browser, operating system, device type, language, time zone, the site a visitor came from, and the first page they opened. No names, email addresses or IP addresses are stored.</li>
+            <li><b>Who else sees it.</b> To find the city, the visitor&rsquo;s browser asks a free location service (ipwho.is, or ipapi.co or geojs.io if it&rsquo;s unavailable), which sees the IP address. Visits are stored in a database hosted by Supabase.</li>
+            <li><b>What this page shows.</b> Totals and breakdowns. Recent visits show only the country and roughly when. Busiest times use each visitor&rsquo;s own time zone; everything else is in yours.</li>
+            <li><b>Opting out.</b> Browsers that send Do Not Track or Global Privacy Control aren&rsquo;t counted, and neither are known bots or visits to this page.</li>
           </ul>
+          <p>Questions? Email <a href="mailto:araja@lbl.gov">araja@lbl.gov</a>.</p>
         </div>
       </div>
     </section>
