@@ -1,6 +1,6 @@
 // Home page footer: a small, slowly turning globe of where visitors are, linking to the Visitor Analytics
-// page. Land is drawn as dots (assets/land-dots.json) and each visiting city as a gold point. It stays
-// hidden until js/visits.js has at least one visit to show.
+// page. Land is drawn as dots (assets/land-dots.json) and each visiting city from js/visits.js as a gold
+// point. Before the first visit, or if visits can't be loaded, it's the globe alone, captioned "Visitor map".
 (function () {
   const link = document.getElementById('visitors');
   const canvas = document.getElementById('visitors-globe');
@@ -81,12 +81,18 @@
 
   const compact = new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 });
 
-  Promise.all([
-    fetch('assets/land-dots.json').then((r) => r.json()),
-    window.RajaVisits.fetchAll(),
-  ]).then(([dots, rows]) => {
-    if (!rows.length) return;
+  // The globe shows as soon as the land has loaded; visits add their cities and the count when they arrive.
+  const visits = window.RajaVisits.fetchAll().catch(() => []);
+  fetch('assets/land-dots.json').then((r) => r.json()).then((dots) => {
     for (let i = 0; i < dots.length; i += 2) land.push(vec(dots[i] / 10, dots[i + 1] / 10));
+    link.hidden = false;
+    resize();
+    new ResizeObserver(resize).observe(canvas);
+    new IntersectionObserver((entries) => { visible = entries[0].isIntersecting; play(); }).observe(canvas);
+    document.addEventListener('visibilitychange', play);
+    return visits;
+  }).then((rows) => {
+    if (!rows || !rows.length) return;
 
     const byCity = new Map();
     for (const r of rows) {
@@ -104,11 +110,6 @@
       + (countries === 1 ? ' country' : ' countries') + (window.RajaVisits.demo ? ' (sample)' : '');
     document.getElementById('visitors-stats').textContent = text;
     link.setAttribute('aria-label', 'Visitor analytics: ' + text);
-
-    link.hidden = false;
-    resize();
-    new ResizeObserver(resize).observe(canvas);
-    new IntersectionObserver((entries) => { visible = entries[0].isIntersecting; play(); }).observe(canvas);
-    document.addEventListener('visibilitychange', play);
+    draw();
   }).catch(() => {});
 })();

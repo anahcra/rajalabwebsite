@@ -66,7 +66,7 @@
   // One visit per tab, from real browsers on the live site.
   function record() {
     if (!configured || !live || demo) return;
-    if (navigator.doNotTrack === '1' || navigator.globalPrivacyControl) return;
+    if (navigator.doNotTrack === '1' || navigator.globalPrivacyControl) { console.info('Visit not counted: this browser asks not to be tracked.'); return; }
     if (navigator.webdriver || /bot|crawl|spider|slurp|headless|lighthouse/i.test(navigator.userAgent)) return;
     if (/analytics\.html$/.test(location.pathname)) return;
     try { if (sessionStorage.getItem('rl_visit')) return; sessionStorage.setItem('rl_visit', '1'); } catch (e) { return; }
