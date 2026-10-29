@@ -44,7 +44,7 @@ Deploys as-is to any static host (GitHub Pages, Netlify, etc.).
 
 ## Visitor analytics
 
-`js/visits.js` records one visit per browser tab on `rajalabs.lbl.gov` in a [Supabase](https://supabase.com) table (project `aefiwtzmkyoyjxleabho`); the home globe and `analytics.html` read them back. Local previews read the same visits but never record any; add `?demo` to the URL to see generated sample data instead. The globe stays hidden until there's at least one visit.
+`js/visits.js` records one visit per browser tab on `rajalabs.lbl.gov` in a [Supabase](https://supabase.com) table (project `aefiwtzmkyoyjxleabho`); the home globe and `analytics.html` read them back. Local previews read the same visits but never record any; add `?demo` to the URL to see generated sample data instead.
 
 Setup (already done for this site; for reference, or if the project is ever recreated):
 
