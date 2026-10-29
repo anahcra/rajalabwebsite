@@ -146,6 +146,14 @@ img { display: block; max-width: 100%; }
   color: rgba(255, 255, 255, .92);
   transition: all .35s ease;
 }
+/* Over the hero photo, a tight navy edge on the letters keeps them clear where the sky is pale; no tint on the photo itself. */
+.nav:not(.is-solid):not(.nav--solid):not(.is-open) .nav__logo,
+.nav:not(.is-solid):not(.nav--solid):not(.is-open) .nav__toggle {
+  filter: drop-shadow(0 1px 1px rgba(0, 20, 45, .6)) drop-shadow(0 0 4px rgba(0, 20, 45, .45));
+}
+.nav:not(.is-solid):not(.nav--solid):not(.is-open) .nav__link {
+  text-shadow: 0 1px 1px rgba(0, 20, 45, .6), 0 0 4px rgba(0, 20, 45, .45);
+}
 /* The solid bar is navy, so the wordmark's gold Λs and the gold active link always sit on navy (7:1). */
 .nav.is-solid,
 .nav--solid {
