@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Visitor Analytics · Raja Labs</title>
+  <meta name="description" content="Where visitors to the Raja Labs website come from: visits by country and city, over time, by device and language, and the busiest times of day.">
+  <link rel="canonical" href="https://rajalabs.lbl.gov/analytics.html">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#003262">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+  <!-- Open Graph / social previews -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Raja Labs">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Visitor Analytics · Raja Labs">
+  <meta property="og:description" content="Where visitors to the Raja Labs website come from: visits by country and city, over time, by device and language, and the busiest times of day.">
+  <meta property="og:url" content="https://rajalabs.lbl.gov/analytics.html">
+  <meta property="og:image" content="https://rajalabs.lbl.gov/assets/hero.jpg">
+  <meta property="og:image:alt" content="Sunset over the Berkeley hills and San Francisco Bay">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>document.documentElement.classList.add('js')</script>
+  <script src="js/main.js" defer></script>
+  <script src="js/visits.js" defer></script>
+  <script src="js/visitor-analytics.js" defer></script>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav nav--solid" id="nav">
+    <a href="index.html" class="nav__brand" aria-label="Raja Labs"><svg class="nav__logo" viewBox="0 0 6917 711" aria-hidden="true" focusable="false"><use href="assets/wordmark.svg#wordmark"/></svg></a>
+    <button class="nav__toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav__links" id="nav-links">
+      <a href="index.html" class="nav__link">Home</a>
+      <a href="about.html" class="nav__link">People</a>
+      <a href="research.html" class="nav__link">Research</a>
+      <a href="publications.html" class="nav__link">Publications</a>
+      <a href="facilities.html" class="nav__link">Facilities</a>
+      <a href="visit.html" class="nav__link">Visit</a>
+      <a href="join.html" class="nav__link">Join</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- PAGE HEADER -->
+    <header class="page-head page-head--analytics">
+      <div class="page-head__inner">
+        <p class="eyebrow">Raja Labs</p>
+        <h1 class="page-head__title">Visitor Analytics</h1>
+      </div>
+    </header>
+
+    <!-- ANALYTICS: js/visitor-analytics.js fills this in from the visits js/visits.js records. -->
+    <section class="va" id="va">
+      <div class="va__inner">
+        <div class="va__bar">
+          <div class="va-seg" role="group" aria-label="Time range">
+            <button type="button" data-range="24h">24 hours</button><button type="button" data-range="7d">7 days</button><button type="button" data-range="30d">30 days</button><button type="button" data-range="all">All time</button>
+          </div>
+          <div class="va__chips" id="va-chips" role="group" aria-label="Filters"></div>
+        </div>
+        <p class="va__status" id="va-status" aria-live="polite">Loading visits&hellip;</p>
+
+        <div class="va__body" id="va-body" hidden>
+          <div class="va-kpis" role="group" aria-label="Summary">
+          <div class="va-kpi va-kpi--main"><p class="va-kpi__l" id="kl-1">&nbsp;</p><p class="va-kpi__v" id="kv-1">&ndash;</p><p class="va-kpi__s" id="ks-1">&nbsp;</p></div>
+          <div class="va-kpi"><p class="va-kpi__l" id="kl-2">&nbsp;</p><p class="va-kpi__v" id="kv-2">&ndash;</p><p class="va-kpi__s" id="ks-2">&nbsp;</p></div>
+          <div class="va-kpi"><p class="va-kpi__l" id="kl-3">&nbsp;</p><p class="va-kpi__v" id="kv-3">&ndash;</p><p class="va-kpi__s" id="ks-3">&nbsp;</p></div>
+          <div class="va-kpi"><p class="va-kpi__l" id="kl-4">&nbsp;</p><p class="va-kpi__v" id="kv-4">&ndash;</p><p class="va-kpi__s" id="ks-4">&nbsp;</p></div>
+          <div class="va-kpi"><p class="va-kpi__l" id="kl-5">&nbsp;</p><p class="va-kpi__v" id="kv-5">&ndash;</p><p class="va-kpi__s" id="ks-5">&nbsp;</p></div>
+          </div>
+
+          <div class="va-row va-row--map">
+            <div class="va-card va-card--map">
+              <div class="va-card__head">
+                <div>
+                  <h2 class="va-card__title">Where visitors are</h2>
+                  <p class="va-card__sub" id="va-map-sub"></p>
+                </div>
+                <div class="va-zoom" role="group" aria-label="Map zoom">
+                  <button type="button" id="va-zoom-in" aria-label="Zoom in">+</button><button type="button" id="va-zoom-out" aria-label="Zoom out">&minus;</button><button type="button" id="va-zoom-reset" aria-label="Show the whole world">&#x2922;</button>
+                </div>
+              </div>
+              <div class="va-map" id="va-map">
+                <div class="va-legend" id="va-map-legend"></div>
+              </div>
+            </div>
+            <div class="va-card">
+              <div class="va-tabs" id="va-places-tabs"></div>
+              <div class="va-list va-list--scroll" id="va-places"></div>
+            </div>
+          </div>
+
+          <div class="va-card">
+            <div class="va-card__head">
+              <h2 class="va-card__title" id="va-trend-title">Visits</h2>
+              <button type="button" class="va-link" id="va-trend-toggle">Show table</button>
+            </div>
+            <div class="va-trend" id="va-trend"></div>
+            <table class="va-table va-table--trend" id="va-trend-table" hidden>
+              <thead><tr><th scope="col">Period</th><th scope="col" class="va-num">Visits</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <div class="va-row va-row--3">
+            <div class="va-card">
+              <div class="va-card__head">
+                <h2 class="va-card__title">Devices</h2>
+                <div class="va-tabs va-tabs--small" id="va-dev-tabs"></div>
+              </div>
+              <div class="va-list" id="va-dev"></div>
+            </div>
+            <div class="va-card">
+              <div class="va-card__head">
+                <h2 class="va-card__title">Browser language</h2>
+              </div>
+              <div class="va-list" id="va-lang"></div>
+            </div>
+            <div class="va-card">
+              <div class="va-card__head">
+                <h2 class="va-card__title">How they found us</h2>
+                <div class="va-tabs va-tabs--small" id="va-src-tabs"></div>
+              </div>
+              <div class="va-list" id="va-src"></div>
+            </div>
+          </div>
+
+          <div class="va-card">
+            <div class="va-card__head">
+              <div>
+                <h2 class="va-card__title">Busiest times</h2>
+                <p class="va-card__sub">In each visitor&rsquo;s local time</p>
+              </div>
+              <div class="va-heat-key" aria-hidden="true"><span>Fewer</span><i data-level="1"></i><i data-level="2"></i><i data-level="3"></i><i data-level="4"></i><i data-level="5"></i><span>More</span></div>
+            </div>
+            <div class="va-scroll"><div class="va-heat" id="va-heat"></div></div>
+            <p class="va-heat__sum" id="va-heat-sum"></p>
+          </div>
+
+          <div class="va-card">
+            <div class="va-card__head">
+              <h2 class="va-card__title">Recent visits</h2>
+            </div>
+            <div class="va-table-wrap">
+              <table class="va-table" id="va-recent">
+                <thead><tr><th scope="col">Time</th><th scope="col">Location</th><th scope="col">Browser</th><th scope="col">Device</th><th scope="col">Language</th><th scope="col">Came from</th></tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <div class="va-recent__foot">
+              <span id="va-recent-count"></span>
+              <button type="button" class="va-btn" id="va-recent-more" hidden>Show 25 more</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="va-about">
+          <h2 class="va-card__title">About this data</h2>
+          <ul>
+            <li>A visit is one browser tab opening the site. Reading more pages in the same tab doesn&rsquo;t add visits, and there are no cookies, so returning visitors aren&rsquo;t told apart.</li>
+            <li>Locations are approximate, to the city, looked up from the visitor&rsquo;s IP address by a free geolocation service. The IP address itself isn&rsquo;t stored.</li>
+            <li>Browsers that send Do Not Track or Global Privacy Control, and known bots, aren&rsquo;t counted. Neither are visits to this page.</li>
+            <li>Busiest times use each visitor&rsquo;s own time zone; everything else is in yours.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="va-tip" id="va-tip" role="tooltip" hidden></div>
+
+  <footer class="footer">
+    Raja Labs · <a href="mailto:araja@lbl.gov">araja@lbl.gov</a> · © 2026
+  </footer>
+
+</body>
+</html>
