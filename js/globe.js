@@ -1,5 +1,6 @@
-// Home page footer: a small, slowly turning globe of where visitors are, linking to the Visitor Analytics
-// page. Land is drawn as dots (assets/land-dots.json) and each visiting city from js/visits.js as a gold
+// Home page footer: a small, slowly turning globe of where visitors are. It links to the Visitor Analytics
+// page only in a browser that has opened that page before (js/visitor-analytics.js sets rl_owner), so
+// visitors see the globe but don't click through. Land is drawn as dots (assets/land-dots.json) and each visiting city from js/visits.js as a gold
 // point. Before the first visit, or if visits can't be loaded, it's the globe alone, captioned "Visitor map".
 (function () {
   const link = document.getElementById('visitors');
@@ -9,6 +10,9 @@
   const TILT = 22 * Math.PI / 180;  // view from a little above the equator
   const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const ctx = canvas.getContext('2d');
+  let owner = false;
+  try { owner = localStorage.getItem('rl_owner') === '1'; } catch (e) {}
+  if (owner) link.href = 'analytics.html';
   let land = [], cities = [];
   let size = 0, dpr = 1, R = 0, lon0 = -82, last = 0, running = false, visible = false;
 
@@ -109,7 +113,7 @@
     const text = compact.format(rows.length) + (rows.length === 1 ? ' visit' : ' visits') + ' from ' + countries
       + (countries === 1 ? ' country' : ' countries') + (window.RajaVisits.demo ? ' (sample)' : '');
     document.getElementById('visitors-stats').textContent = text;
-    link.setAttribute('aria-label', 'Visitor analytics: ' + text);
+    if (owner) link.setAttribute('aria-label', 'Visitor analytics: ' + text);
     draw();
   }).catch(() => {});
 })();
