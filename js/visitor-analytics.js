@@ -4,6 +4,8 @@
 (function () {
   const root = document.getElementById('va');
   if (!root || !window.RajaVisits || !window.fetch) return;
+  // Whoever opens this page gets the home page's globe as a link back here (js/globe.js); nobody else does.
+  try { localStorage.setItem('rl_owner', '1'); } catch (e) {}
 
   const DAY = 864e5, HOUR = 36e5;
   const NS = 'http://www.w3.org/2000/svg';

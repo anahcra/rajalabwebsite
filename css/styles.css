@@ -1391,16 +1391,16 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
 
 /* ---------- Visitors globe (home page footer) ---------- */
 
-/* js/globe.js draws a small globe of visiting cities; it links to the Visitor Analytics page. It sits midway
-   between the last line of the page and the footer line, 96px from each: once the stream has ended on the FAQ
-   (paper, like the footer), the globe rises into that section's --section-y bottom padding. */
+/* js/globe.js draws a small globe of visiting cities; only for the owner is it a link to the Visitor Analytics
+   page. It sits midway between the last line of the page and the footer line, 96px from each: once the stream
+   has ended on the FAQ (paper, like the footer), the globe rises into that section's --section-y bottom padding. */
 .footer .globe { display: block; width: fit-content; margin: 0 auto 96px; color: var(--muted); }
 main:has(.stream .faq) + .footer .globe { margin-top: calc(96px - var(--section-y) - 44px); }
 .globe[hidden] { display: none; }
 .globe__canvas { display: block; width: 200px; height: 200px; margin: 0 auto 14px; transition: transform .3s; }
 .globe__stats { display: block; }
-.footer .globe:hover { color: var(--gold-text); }
-.globe:hover .globe__canvas { transform: scale(1.04); }
+.footer .globe[href]:hover { color: var(--gold-text); }
+.globe[href]:hover .globe__canvas { transform: scale(1.04); }
 @media (prefers-reduced-motion: reduce) { .globe__canvas { transition: none; } }
 
 /* ---------- Visitor analytics ---------- */

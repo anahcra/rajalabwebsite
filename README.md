@@ -14,13 +14,13 @@ values.html         core values: embeds Berkeley Lab's stewardship.lbl.gov/value
 visit.html          getting to the Molecular Foundry
 faq.html            joining, user access, visiting (<details> accordions)
 join.html           Getting Started: ways to join, the path to working in the lab (approval, site access, safety training, instrument training), contact
-analytics.html      Visitor Analytics dashboard (linked from the home globe; noindex, not in the nav, sitemap or stream)
+analytics.html      Visitor Analytics dashboard (noindex, not linked from anywhere: open it once and the home globe links to it in that browser)
 css/styles.css      styles + responsive breakpoints
 js/main.js          nav behaviour (transparent → solid on scroll, mobile menu)
 js/ticker.js        animated paper-boat header (publications.html)
 js/stream.js        home: appends each other page's sections, in nav order, as the reader scrolls (list in index.html #stream)
 js/visits.js        records one visit per tab on the live site (Supabase) and loads them for the globe and analytics page
-js/globe.js         home footer: the small turning globe of visitors, linking to analytics.html
+js/globe.js         home footer: the small turning globe of visitors (a link to analytics.html only for the owner)
 js/visitor-analytics.js  analytics.html: map, trends, devices, busiest times, recent visits
 js/news.js          home "Featured Stories": latest Foundry stories from foundry.lbl.gov (falls back to the cards in index.html)
 assets/world.json   country outlines for the analytics map (Natural Earth 1:110m via world-atlas, Equal Earth projection)

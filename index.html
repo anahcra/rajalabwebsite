@@ -225,8 +225,9 @@
   </main>
 
   <footer class="footer">
-    <!-- js/globe.js draws where visitors are from the visits js/visits.js records. -->
-    <a class="globe" id="visitors" href="analytics.html" hidden>
+    <!-- js/globe.js draws where visitors are from the visits js/visits.js records. Not a link, except in a
+         browser that has opened analytics.html (see js/globe.js). -->
+    <a class="globe" id="visitors" hidden>
       <canvas class="globe__canvas" id="visitors-globe" aria-hidden="true"></canvas>
       <span class="globe__stats" id="visitors-stats">Visitor map</span>
     </a>
