@@ -130,6 +130,20 @@ img { display: block; max-width: 100%; }
   color: var(--muted);
 }
 
+/* Keyboard users: the first Tab stop jumps past the nav to the page content. Hidden until focused. */
+.skip-link {
+  position: fixed;
+  top: 12px; left: 12px;
+  z-index: 100;
+  padding: 10px 16px;
+  background: var(--gold);
+  color: #000;
+  font-weight: 600;
+  border-radius: 4px;
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: none; }
+
 /* ---------- Nav ---------- */
 
 .nav {
@@ -368,6 +382,10 @@ img { display: block; max-width: 100%; }
 .subnav__link:hover { color: #fff; }
 .subnav__link.is-active { color: var(--gold); }
 .subnav__link.is-active::after { width: 100%; }
+/* When the tabs don't fit (phones), fade the edge that has more tabs past it (classes set in js/main.js). */
+.subnav--more-right { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 56px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 56px), transparent); }
+.subnav--more-left { -webkit-mask-image: linear-gradient(to left, #000 calc(100% - 56px), transparent); mask-image: linear-gradient(to left, #000 calc(100% - 56px), transparent); }
+.subnav--more-left.subnav--more-right { -webkit-mask-image: linear-gradient(to right, transparent, #000 56px, #000 calc(100% - 56px), transparent); mask-image: linear-gradient(to right, transparent, #000 56px, #000 calc(100% - 56px), transparent); }
 /* Grouped pages (People: PI / Team; Join: Getting Started / Lab Life / Values / FAQ): larger tabs, with the title centered
    in the space between the nav and the tabs. */
 .page-head--tabs { display: flex; flex-direction: column; padding: var(--nav-h-solid) 0 0; }
