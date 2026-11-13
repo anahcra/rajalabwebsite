@@ -1721,7 +1721,7 @@ button.va-list__row:hover .va-list__name > :first-child { color: var(--blue); te
 
 @media (max-width: 600px) {
   .instrument__poster { grid-template-columns: minmax(0, 1fr); gap: 20px; }
-  .instrument__poster-thumb { max-width: 220px; }
+  .instrument__poster-thumb { max-width: 220px; justify-self: center; }
   :root { --section-y: 88px; --section-y-tight: 48px; }
   .allpubs { padding-top: 72px; }
   .page-head { --head-h: 340px; }
