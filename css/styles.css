@@ -1123,6 +1123,14 @@ img.member__photo { display: block; border-radius: 50%; object-fit: cover; }
   line-height: 1.6;
 }
 
+/* Poster subsection: thumbnail linking to the PDF beside its description. */
+.instrument__poster { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 32px; align-items: start; }
+.instrument__poster-thumb { display: block; border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; transition: box-shadow .2s; }
+.instrument__poster-thumb:hover { box-shadow: 0 6px 20px rgba(0, 0, 0, .12); }
+.instrument__poster-thumb img { display: block; width: 100%; height: auto; }
+.instrument__poster-authors { margin: -8px 0 16px; font-size: var(--text-sm); color: var(--muted); }
+.instrument__poster-link { font-size: var(--text-sm); font-weight: 600; color: var(--blue); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--rule); }
+
 .labs { margin-top: 72px; }
 .labs__head { margin-bottom: 28px; }
 .labs__tagline { margin: 0; font-size: var(--text); line-height: 1.6; color: var(--muted); }
@@ -1712,6 +1720,8 @@ button.va-list__row:hover .va-list__name > :first-child { color: var(--blue); te
 }
 
 @media (max-width: 600px) {
+  .instrument__poster { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .instrument__poster-thumb { max-width: 220px; justify-self: center; }
   :root { --section-y: 88px; --section-y-tight: 48px; }
   .allpubs { padding-top: 72px; }
   .page-head { --head-h: 340px; }
