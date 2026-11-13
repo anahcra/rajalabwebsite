@@ -669,7 +669,7 @@ img { display: block; max-width: 100%; }
 /* LEAP spans the row with its three outputs side by side, so the shorter cards below don't stretch to its height. */
 .program--wide { grid-column: 1 / -1; }
 .program--wide .program__body { max-width: 720px; }
-.program--wide .program__list { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 8px 40px; }
+.program--wide .program__list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); gap: 8px 40px; }
 .program--wide .program__list li + li { margin-top: 0; }
 .program__partners { margin: 14px 0 0; font-size: var(--text-sm); line-height: 1.65; color: var(--muted); }
 
